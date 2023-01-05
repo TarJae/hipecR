@@ -11,7 +11,8 @@ The goal of hipecR is to provide is to provide some essential functions to calcu
 You can install the development version of hipecR like so:
 
 ``` r
-# FILL THIS IN! HOW CAN PEOPLE INSTALL YOUR DEV PACKAGE?
+library(devtools) # Make sure that the devtools library is loaded
+install_github("tarjae/hipecR")
 ```
 
 ## Example
