@@ -1,5 +1,6 @@
 
-![sapesuca_hex](https://user-images.githubusercontent.com/48481785/210942094-fc16d452-a765-4317-b4ea-335e9461b3e0.png) 
+![hipecR_logo_web](https://github.com/TarJae/hipecR/assets/48481785/76f63c96-957f-4f26-8dc9-cbf65c5f6c5e)
+
 
 # hipecR
 
