@@ -1,4 +1,6 @@
 
+![sapesuca_hex](https://user-images.githubusercontent.com/48481785/210942094-fc16d452-a765-4317-b4ea-335e9461b3e0.png) 
+
 # hipecR
 
 <!-- badges: start -->
