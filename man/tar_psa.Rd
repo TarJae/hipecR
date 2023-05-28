@@ -9,11 +9,14 @@ tar_psa(height, weight)
 \arguments{
 \item{height}{A numeric value in cm}
 
-\item{weight}{A numeric value in cm}
+\item{weight}{A numeric value in kg}
 }
 \value{
 A numeric value in (cm²) (factor for further calculations)
 }
 \description{
 This function calculates the pERITONEAL sURFACE aREA in cm²
+}
+\examples{
+tar_psa(180, 80)
 }
