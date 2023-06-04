@@ -2,6 +2,7 @@
 
 export(tar_age)
 export(tar_bsa)
+export(tar_count_na)
 export(tar_head_tail)
 export(tar_psa)
 importFrom(dplyr,"%>%")
