@@ -2,4 +2,11 @@
 
 export(tar_age)
 export(tar_bsa)
+export(tar_head_tail)
 export(tar_psa)
+importFrom(dplyr,"%>%")
+importFrom(dplyr,bind_rows)
+importFrom(tibble,column_to_rownames)
+importFrom(tibble,rownames_to_column)
+importFrom(utils,head)
+importFrom(utils,tail)

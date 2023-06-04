@@ -7,3 +7,6 @@
 ^hipecR.*\.tar\.gz$
 ^hipecR.*\.tgz$
 ^folder_only_for_me$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
