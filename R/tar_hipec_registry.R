@@ -218,15 +218,16 @@ CreateDefaultRecord <- function() {
 #'  \code{\link[shiny]{updateTextInput}}, \code{\link[shiny]{updateNumericInput}}, \code{\link[shiny]{updateDateInput}}, \code{\link[shiny]{session}}
 #' @rdname UpdateInputs
 #' @export
-#' @importFrom shiny updateTextInput updateNumericInput updateDateInput session
+#' @importFrom shiny updateTextInput updateNumericInput updateDateInput
 UpdateInputs <- function(data, session) {
   shiny::updateTextInput(session, "id", value = unname(rownames(data)))
   shiny::updateTextInput(session, "Institut", value = unname(data["Institut"]))
   shiny::updateNumericInput(session, "Register_Nr", value = unname(data["Register_Nr"]))
-  shiny::updateDateInput(shiny::session, "Erstellt_am", value = unname(data["Erstellt_am"]))
-  shiny::updateTextInput(shiny::session, "Chirurg_kodiert", value = unname(data["Chirurg_kodiert"]))
-  shiny::updateNumericInput(shiny::session, "Interne_Nr", value = unname(data["Interne_Nr"]))
-  shiny::updateTextInput(shiny::session, "Ueberprueft", value = unname(data["Ueberprueft"]))
-  shiny::updateDateInput(shiny::session, "Datum_der_ueberpruefung", value = unname(data["Datum_der_ueberpruefung"]))
-  shiny::updateTextInput(shiny::session, "Name_des_ueberpruefenden", value = unname(data["Name_des_ueberpruefenden"]))
+  shiny::updateDateInput(session, "Erstellt_am", value = unname(data["Erstellt_am"]))
+  shiny::updateTextInput(session, "Chirurg_kodiert", value = unname(data["Chirurg_kodiert"]))
+  shiny::updateNumericInput(session, "Interne_Nr", value = unname(data["Interne_Nr"]))
+  shiny::updateTextInput(session, "Ueberprueft", value = unname(data["Ueberprueft"]))
+  shiny::updateDateInput(session, "Datum_der_ueberpruefung", value = unname(data["Datum_der_ueberpruefung"]))
+  shiny::updateTextInput(session, "Name_des_ueberpruefenden", value = unname(data["Name_des_ueberpruefenden"]))
 }
+
