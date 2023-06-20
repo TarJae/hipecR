@@ -157,11 +157,11 @@ DeleteData <- function(data) {
 #' @export
 
 CastData <- function(data) {
-  datar <- data.frame(Institut = data["Institut"],
+  datar <- data.frame(Institut = as.character(data["Institut"]),
                       Register_Nr = as.integer(data["Register_Nr"]),
                       Erstellt_am = as.character(data["Erstellt_am"]),
-                      Chirurg_kodiert = as.character(data["Chirurg"]),
-                      Interne_Nr = as.integer(data["Interne Nr"]),
+                      Chirurg_kodiert = as.character(data["Chirurg_kodiert"]),
+                      Interne_Nr = as.integer(data["Interne_Nr"]),
                       Ueberprueft = as.character(data["Ueberprueft"]),
                       Datum_der_ueberpruefung = as.character(data["Datum_der_ueberpruefung"]),
                       Name_des_ueberpruefenden = as.character(data["Name_des_ueberpruefenden"]),
@@ -221,13 +221,21 @@ CreateDefaultRecord <- function() {
 #' @importFrom shiny updateTextInput updateNumericInput updateDateInput
 UpdateInputs <- function(data, session) {
   shiny::updateTextInput(session, "id", value = unname(rownames(data)))
+
   shiny::updateTextInput(session, "Institut", value = unname(data["Institut"]))
-  shiny::updateNumericInput(session, "Register_Nr", value = unname(data["Register_Nr"]))
-  shiny::updateDateInput(session, "Erstellt_am", value = unname(data["Erstellt_am"]))
-  shiny::updateTextInput(session, "Chirurg_kodiert", value = unname(data["Chirurg_kodiert"]))
-  shiny::updateNumericInput(session, "Interne_Nr", value = unname(data["Interne_Nr"]))
-  shiny::updateTextInput(session, "Ueberprueft", value = unname(data["Ueberprueft"]))
-  shiny::updateDateInput(session, "Datum_der_ueberpruefung", value = unname(data["Datum_der_ueberpruefung"]))
-  shiny::updateTextInput(session, "Name_des_ueberpruefenden", value = unname(data["Name_des_ueberpruefenden"]))
+
+  shiny::updateNumericInput(session, "Register_Nr", value = as.integer(data["Register_Nr"]))
+
+  shiny::updateDateInput(session, "Erstellt_am", value = as.character(data["Erstellt_am"]))
+
+  shiny::updateTextInput(session, "Chirurg_kodiert", value = as.character(data["Chirurg_kodiert"]))
+
+  shiny::updateNumericInput(session, "Interne_Nr", value = as.integer(data["Interne_Nr"]))
+
+  shiny::updateTextInput(session, "Ueberprueft", value = as.character(data["Ueberprueft"]))
+
+  shiny::updateDateInput(session, "Datum_der_ueberpruefung", value = as.character(data["Datum_der_ueberpruefung"]))
+
+  shiny::updateTextInput(session, "Name_des_ueberpruefenden", value = as.character(data["Name_des_ueberpruefenden"]))
 }
 
