@@ -18,6 +18,8 @@
 #' @rdname GetTableMetadata
 #' @export
 
+
+
 GetTableMetadata <- function(variable = fieldsAll, label = label_names){
 
     vector_str <- paste("c(", paste(paste0(variable, " = \"", label, "\""), collapse = ", "), ")")
@@ -220,8 +222,12 @@ CreateDefaultRecord <- function() {
 #' @export
 #' @importFrom shiny updateTextInput updateNumericInput updateDateInput
 UpdateInputs <- function(data, session) {
+<<<<<<< HEAD
   shiny::updateTextInput(session, "id", value = unname(rownames(data)))
 
+=======
+  shiny::updateTextInput(session, "id", value = unname(rownames(data["id"])))
+>>>>>>> e119244948438eb9a8cead04b9547bccd3e6f2d5
   shiny::updateTextInput(session, "Institut", value = unname(data["Institut"]))
 
   shiny::updateNumericInput(session, "Register_Nr", value = as.integer(data["Register_Nr"]))
