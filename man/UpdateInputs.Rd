@@ -28,5 +28,5 @@ if(interactive()){
 }
 }
 \seealso{
-\code{\link[shiny]{updateTextInput}}, \code{\link[shiny]{updateNumericInput}}, \code{\link[shiny]{updateDateInput}}, \code{\link[shiny]{session}}
+\code{\link[shiny]{updateTextInput}}, \code{\link[shiny]{updateNumericInput}}, \code{\link[shiny]{updateDateInput}}
 }

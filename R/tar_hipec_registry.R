@@ -18,8 +18,6 @@
 #' @rdname GetTableMetadata
 #' @export
 
-
-
 GetTableMetadata <- function(variable = fieldsAll, label = label_names){
 
     vector_str <- paste("c(", paste(paste0(variable, " = \"", label, "\""), collapse = ", "), ")")
@@ -203,7 +201,7 @@ CreateDefaultRecord <- function() {
   return (mydefault)
 }
 
-# Fill the input fields with the values of the selected record in the table
+
 #' @title FUNCTION_TITLE
 #' @description FUNCTION_DESCRIPTION
 #' @param data PARAM_DESCRIPTION
@@ -217,17 +215,14 @@ CreateDefaultRecord <- function() {
 #'  }
 #' }
 #' @seealso
-#'  \code{\link[shiny]{updateTextInput}}, \code{\link[shiny]{updateNumericInput}}, \code{\link[shiny]{updateDateInput}}, \code{\link[shiny]{session}}
+#'  \code{\link[shiny]{updateTextInput}}, \code{\link[shiny]{updateNumericInput}}, \code{\link[shiny]{updateDateInput}}
 #' @rdname UpdateInputs
 #' @export
 #' @importFrom shiny updateTextInput updateNumericInput updateDateInput
+
 UpdateInputs <- function(data, session) {
-<<<<<<< HEAD
   shiny::updateTextInput(session, "id", value = unname(rownames(data)))
 
-=======
-  shiny::updateTextInput(session, "id", value = unname(rownames(data["id"])))
->>>>>>> e119244948438eb9a8cead04b9547bccd3e6f2d5
   shiny::updateTextInput(session, "Institut", value = unname(data["Institut"]))
 
   shiny::updateNumericInput(session, "Register_Nr", value = as.integer(data["Register_Nr"]))
