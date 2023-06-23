@@ -27,6 +27,24 @@ GetTableMetadata <- function(variable = fieldsAll, label = label_names){
     return(result)
   }
 
+# GetTableMetadata <- function() {
+#   fields <- c(id = "Id",
+#               Institut = "Institut",
+#               Register_Nr = "Register Nr",
+#               Erstellt_am = "Erstellt am",
+#               Chirurg_kodiert = "Chirurg",
+#               Interne_Nr = "Interne Nr",
+#               Ueberprueft = "Überprüft",
+#               Datum_der_ueberpruefung = "Datum der Überprüfung",
+#               Name_des_ueberpruefenden = "Name des Überprüfenden"
+#               )
+#
+#   result <- list(fields = fields)
+#   return (result)
+# }
+
+
+
 # Find the next ID of a new record
 # (in mysql, this could be done by an incremental index)
 #' @title FUNCTION_TITLE

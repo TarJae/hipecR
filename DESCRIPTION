@@ -8,6 +8,7 @@ Description: In addition to several helpful functions for analysing patient data
     After calculating the global PSA, we are able to assess the quantitative PSA before and after cytoredution (surgery).
     The underlying idea is to provide a reproducible and comparable definition of the resected PSA across different instituions. 
     The next step is to calculate the dosage of the chemotherapy during hyperthermic intraperitoneal chemotherapy adapted to the remaining PSA.
+    Meanwhile some function for registry creation are added.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -18,4 +19,5 @@ Config/testthat/edition: 3
 Imports: 
     dplyr,
     tibble,
-    shiny
+    shiny, 
+    shinyWidgets
