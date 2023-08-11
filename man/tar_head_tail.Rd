@@ -2,32 +2,34 @@
 % Please edit documentation in R/tar_headtail.R
 \name{tar_head_tail}
 \alias{tar_head_tail}
-\title{Show head and tail of data frame}
+\title{Display both the head and tail of a dataframe or tibble}
 \usage{
 tar_head_tail(data, nh = 5, nt = 5)
 }
 \arguments{
-\item{data}{PARAM_DESCRIPTION}
+\item{data}{A dataframe or tibble whose head and tail you wish to view.}
 
-\item{nh}{PARAM_DESCRIPTION, Default: 5}
+\item{nh}{An integer specifying the number of rows from the start of `data` to display. Default is 5.}
 
-\item{nt}{PARAM_DESCRIPTION, Default: 5}
+\item{nt}{An integer specifying the number of rows from the end of `data` to display. Default is 5.}
 }
 \value{
-OUTPUT_DESCRIPTION
+A dataframe composed of the first `nh` and last `nt` rows of the input data.
+The row numbers from the original data are used as row names in the result.
 }
 \description{
-FUNCTION_DESCRIPTION
-}
-\details{
-DETAILS
+This function returns the first `nh` = n head and last `nt` = n tail rows of a dataframe or tibble.
+Row numbers from the original data are preserved as row names in the result.
 }
 \examples{
 \dontrun{
 if(interactive()){
- #EXAMPLE1
+ # Generate example data
+ df <- data.frame(A = 1:10, B = 11:20)
+ tar_head_tail(df, nh = 3, nt = 2)
  }
 }
+
 }
 \seealso{
 \code{\link[tibble]{rownames}}
