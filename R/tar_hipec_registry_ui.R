@@ -2,7 +2,8 @@
 #' @title tar_WellPanel
 #' @description Creates a shinydashboard box equivalent with shiny
 #' @param n integer the gives the number of months in follow-up
-#' @return returns a wellpanel a quasi shinydashboard box (without ShinyDashboard)
+#' @return returns a wellpanel a quasi shinydashboard box
+#' (without ShinyDashboard)
 #' @details DETAILS
 #' @examples
 #' \dontrun{
@@ -19,9 +20,12 @@ tar_WellPanel <- function(n) {
   wellPanel(
     h3(paste(n_str, "Monate")),
     tar_dateInput(paste("FUp_", n_str, "Mo_Datum", sep = ""), "Datum"),
-    selectInput(paste("FUp_", n_str, "Mo__Follow_Up_Status", sep = ""), "Status", c("", "A", "B", "C")),
-    selectInput(paste("FUp_", n_str, "Mo_Art_des_Rezidivs", sep = ""), "Art des Rezidivs", c("", "A", "B", "C")),
-    textInput(paste("FUp_", n_str, "Mo_Anmerkungen", sep = ""), "Anmerkungen","")
+    selectInput(paste("FUp_", n_str, "Mo__Follow_Up_Status", sep = ""),
+                "Status", c("", "A", "B", "C")),
+    selectInput(paste("FUp_", n_str, "Mo_Art_des_Rezidivs", sep = ""),
+                "Art des Rezidivs", c("", "A", "B", "C")),
+    textInput(paste("FUp_", n_str, "Mo_Anmerkungen", sep = ""),
+              "Anmerkungen","")
   )
 }
 

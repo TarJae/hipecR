@@ -10,7 +10,8 @@ tar_WellPanel(n)
 \item{n}{integer the gives the number of months in follow-up}
 }
 \value{
-returns a wellpanel a quasi shinydashboard box (without ShinyDashboard)
+returns a wellpanel a quasi shinydashboard box
+(without ShinyDashboard)
 }
 \description{
 Creates a shinydashboard box equivalent with shiny

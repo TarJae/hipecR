@@ -206,16 +206,19 @@ CastData <- function(data) {
 #' @export
 
 CreateDefaultRecord <- function() {
-  mydefault <- CastData(list(id = "0",
-                             Institut = "",
-                             Register_Nr = 0,
-                             Erstellt_am = as.character(Sys.Date()),
-                             Chirurg_kodiert = "",
-                             Interne_Nr = 0,
-                             Ueberprueft = "",
-                             Datum_der_ueberpruefung = as.character(Sys.Date()),
-                             Name_des_ueberpruefenden = "")
-                        )
+  mydefault <- CastData(
+    list(
+      id = "0",
+      Institut = "",
+      Register_Nr = 0,
+      Erstellt_am = as.character(Sys.Date()),
+      Chirurg_kodiert = "",
+      Interne_Nr = 0,
+      Ueberprueft = "",
+      Datum_der_ueberpruefung = as.character(Sys.Date()),
+      Name_des_ueberpruefenden = ""
+    )
+  )
   return (mydefault)
 }
 
@@ -237,24 +240,15 @@ CreateDefaultRecord <- function() {
 #' @rdname UpdateInputs
 #' @export
 #' @importFrom shiny updateTextInput updateNumericInput updateDateInput
-
 UpdateInputs <- function(data, session) {
   shiny::updateTextInput(session, "id", value = unname(rownames(data)))
-
   shiny::updateTextInput(session, "Institut", value = unname(data["Institut"]))
-
   shiny::updateNumericInput(session, "Register_Nr", value = as.integer(data["Register_Nr"]))
-
   shiny::updateDateInput(session, "Erstellt_am", value = as.character(data["Erstellt_am"]))
-
   shiny::updateTextInput(session, "Chirurg_kodiert", value = as.character(data["Chirurg_kodiert"]))
-
   shiny::updateNumericInput(session, "Interne_Nr", value = as.integer(data["Interne_Nr"]))
-
   shiny::updateTextInput(session, "Ueberprueft", value = as.character(data["Ueberprueft"]))
-
   shiny::updateDateInput(session, "Datum_der_ueberpruefung", value = as.character(data["Datum_der_ueberpruefung"]))
-
   shiny::updateTextInput(session, "Name_des_ueberpruefenden", value = as.character(data["Name_des_ueberpruefenden"]))
 }
 

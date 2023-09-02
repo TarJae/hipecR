@@ -2,18 +2,18 @@
 % Please edit documentation in R/tar_sumna.R
 \name{tar_count_na}
 \alias{tar_count_na}
-\title{FUNCTION_TITLE}
+\title{NA counter}
 \usage{
 tar_count_na(df)
 }
 \arguments{
-\item{df}{PARAM_DESCRIPTION}
+\item{df}{a data frame}
 }
 \value{
-OUTPUT_DESCRIPTION
+returns
 }
 \description{
-FUNCTION_DESCRIPTION
+Counts NA's across columns
 }
 \details{
 DETAILS
@@ -21,7 +21,7 @@ DETAILS
 \examples{
 \dontrun{
 if(interactive()){
- #EXAMPLE1
+ tar_count_na(mtcars)
  }
 }
 }

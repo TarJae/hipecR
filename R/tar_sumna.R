@@ -1,18 +1,18 @@
-#' @title FUNCTION_TITLE
-#' @description FUNCTION_DESCRIPTION
-#' @param df PARAM_DESCRIPTION
-#' @return OUTPUT_DESCRIPTION
+#' @title NA counter
+#' @description Counts NA's across columns
+#' @param df a data frame
+#' @return returns
 #' @details DETAILS
 #' @examples
 #' \dontrun{
 #' if(interactive()){
-#'  #EXAMPLE1
+#'  tar_count_na(mtcars)
 #'  }
 #' }
 #' @rdname tar_count_na
 #' @export
 
 tar_count_na <- function(df){
-  sapply(df, function(x) sum(is.na(x)))
+  vapply(df, function(x) sum(is.na(x)), FUN.VALUE = numeric(1))
 }
 
