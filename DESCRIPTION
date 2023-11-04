@@ -21,4 +21,6 @@ Imports:
     tibble,
     shiny, 
     shinyWidgets, 
-    formatR
+    formatR,
+    dlookr,
+    ggpubr

@@ -5,6 +5,9 @@
 sinew::makeImport("R", format = "description") and add to DESCRIPTION
  - In Build menu >> More >> Configure Build tools >> Generate Documentation >> Install and Restart
 
+usethis::use_r("xxxx")
+tab Code -> Insert roxygen
+
 Use Rstudio Build and install, or do:
 devtools::document()
 devtools::build()
