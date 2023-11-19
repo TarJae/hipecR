@@ -4,10 +4,23 @@
 \alias{tar_get_value}
 \title{Look-up function}
 \usage{
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 250d76c4c0265659faa6ef2ff45b6038dd20623c
 tar_get_value(mykeyvalue)
 }
 \arguments{
 \item{mykeyvalue}{an unquoted key or value}
+<<<<<<< HEAD
+=======
+=======
+tar_get_value(mykey)
+}
+\arguments{
+\item{mykey}{an unquoted key or value}
+>>>>>>> 90c08958b66a7344fa5f094c3eb3a64690cbc130
+>>>>>>> 250d76c4c0265659faa6ef2ff45b6038dd20623c
 }
 \value{
 a key or value, depending on what is wanted
@@ -17,6 +30,13 @@ Look-up function
 }
 \examples{
 # Example data
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+lookup_vector <- c(Hans = "1006341612", Maria = "1040405318")
+>>>>>>> 90c08958b66a7344fa5f094c3eb3a64690cbc130
+>>>>>>> 250d76c4c0265659faa6ef2ff45b6038dd20623c
 df <- data.frame(Name = c("Hans", "Maria"), azl = c("1006341612", "1040405318"), stringsAsFactors = FALSE)
 
 tar_get_value(Hans)       # Returns "1006341612"
