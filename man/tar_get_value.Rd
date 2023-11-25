@@ -4,9 +4,11 @@
 \alias{tar_get_value}
 \title{Look-up function}
 \usage{
-tar_get_value(mykeyvalue)
+tar_get_value(df, mykeyvalue)
 }
 \arguments{
+\item{df}{data frame with Name and azl number}
+
 \item{mykeyvalue}{an unquoted key or value}
 }
 \value{
@@ -17,8 +19,10 @@ Look-up function
 }
 \examples{
 # Example data
-df <- data.frame(Name = c("Hans", "Maria"), azl = c("1006341612", "1040405318"), stringsAsFactors = FALSE)
+df <- data.frame(Name = c("Hans", "Maria", "Franz HUBER"), azl = c("1006341612", "1040405318", "1060707219"), stringsAsFactors = FALSE)
 
-tar_get_value(Hans)       # Returns "1006341612"
-tar_get_value(1006341612) # Returns "Hans"
+tar_get_value(df, HUBER)       # Should return "1060707219"
+tar_get_value(df, huber)       # Should also return "1060707219"
+tar_get_value(df, Franz)       # Should return "1060707219"
+tar_get_value(df, 1006341612)  # Should return "Hans"
 }

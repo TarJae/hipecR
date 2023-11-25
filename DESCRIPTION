@@ -23,4 +23,5 @@ Imports:
     shinyWidgets, 
     formatR,
     dlookr,
-    ggpubr
+    ggpubr,
+    stringr
