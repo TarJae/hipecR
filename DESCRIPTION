@@ -24,4 +24,7 @@ Imports:
     formatR,
     dlookr,
     ggpubr,
-    stringr
+    stringr,
+    gt,
+    scales,
+    ggplot2
