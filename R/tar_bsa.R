@@ -1,6 +1,6 @@
-#' Body surface area calculator (Dubois formula)
+#' Body surface area calculator in m² (Dubois and Dubois formula)
 #' @description This function calculates the body surface area with the
-#' Dubois method.DuBois D. A formula to estimate the approximate surface
+#' Dubois method. DuBois D. A formula to estimate the approximate surface
 #' area if height and body mass be known. Arch Intern Med 1916;17:863–71
 #'
 #' @param height A numeric value in cm
@@ -10,11 +10,10 @@
 #' @export
 #'
 #' @examples
-#' tar_bsa(180, 80)
-
+#' tar_bsa(180, 80) # Expected output: 1.996421 m²
+#'
 tar_bsa <- function(height, weight) {
   stopifnot("Input must be numeric" = is.numeric(c(height, weight)))
-  bsa <- as.numeric((0.007184 * height^0.725 * weight^0.425))
+  bsa <- 0.007184 * height^0.725 * weight^0.425
   return(bsa)
 }
-

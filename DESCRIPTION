@@ -27,4 +27,5 @@ Imports:
     stringr,
     gt,
     scales,
-    ggplot2
+    ggplot2,
+    rlang

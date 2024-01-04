@@ -2,21 +2,22 @@
 % Please edit documentation in R/tar_psa.R
 \name{tar_psa}
 \alias{tar_psa}
-\title{Peritoneal surface area in centimeter}
+\title{Peritoneal Surface Area Calculation}
 \usage{
 tar_psa(height, weight)
 }
 \arguments{
-\item{height}{A numeric value in cm}
+\item{height}{A numeric value representing the height in cm.}
 
-\item{weight}{A numeric value in kg}
+\item{weight}{A numeric value representing the weight in kg.}
 }
 \value{
-A numeric value in (cm²) (factor for further calculations)
+A numeric value representing 1% of the peritoneal surface area in cm².
 }
 \description{
-This function calculates the pERITONEAL sURFACE aREA in cm²
+This function calculates 1% of the peritoneal surface area in cm² based on
+the given height and weight. It's used as a factor for further calculations.
 }
 \examples{
-tar_psa(180, 80)
+tar_psa(180, 80) # Expected output: 199.6421 cm²
 }

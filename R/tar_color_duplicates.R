@@ -1,52 +1,58 @@
-#' Color duplicate cells within specific column.
+#' Color Duplicate Cells in Specified Columns
 #'
-#' To visually identify this function will color duplicates in a column.
+#' This function colors cells in specified columns (n=x) of a dataframe that are duplicates.
+#' It is useful for visually identifying duplicates in a `gt` table format.
 #'
-#' @param df The input data frame.
-#' @param var The column to be used for coloring duplicates.
+#' @param df A data frame in which to look for duplicates.
+#' @param vars A vector of column names in which to look for duplicates.
 #'
-#' @return A gt table with colored duplicate groups.
+#' @return A `gt` table with colored duplicate groups.
 #' @export
 #' @examples
-#' # Example usage:
-#' tar_color_duplicates(mtcars, cyl)
+#' tar_color_duplicates(mtcars, c("cyl", "mpg"))
 #'
-#' @importFrom dplyr mutate group_by ungroup cur_group_id
+#' @importFrom dplyr mutate group_by ungroup
+#' @importFrom rlang sym
+#' @importFrom gt gt tab_style cells_body cell_fill
 #' @importFrom scales hue_pal
-#' @importFrom gt gt tab_style cell_fill cells_body
-#'
-#' @author tarjae
-#'
-tar_color_duplicates <- function(df, var){
-  df <- df %>%
-    dplyr::mutate(
-      dupe_group = ifelse(duplicated({{var}}) |
-                            duplicated({{var}}, fromLast = TRUE),
-                          as.character({{var}}), NA)
+
+tar_color_duplicates <- function(df, vars) {
+  for (var in vars) {
+    var_sym <- rlang::sym(var)
+    dupe_group_var <- rlang::sym(paste0(var, "_dupe_group"))
+    color_group_var <- rlang::sym(paste0(var, "_color_group"))
+
+    df <- dplyr::mutate(df,
+                        !!dupe_group_var := dplyr::if_else(duplicated(dplyr::pull(df, !!var_sym)) |
+                                                             duplicated(dplyr::pull(df, !!var_sym), fromLast = TRUE),
+                                                           as.character(dplyr::pull(df, !!var_sym)), NA)
     ) %>%
-    dplyr::group_by(dupe_group) %>%
-    dplyr::mutate(color_group = ifelse(is.na(dupe_group), NA, dplyr::cur_group_id())) %>%
-    ungroup()
-
-  # Assign a color duplicate groups
-  unique_groups <- unique(na.omit(df$color_group))
-  colors <- scales::hue_pal()(length(unique_groups))
-  names(colors) <- unique_groups
-
-
-  gt_table <- df %>%
-    gt::gt()
-
-  for (group in names(colors)) {
-    gt_table <- gt_table %>%
-      gt::tab_style(
-        style = gt::cell_fill(color = colors[group]),
-        locations = gt::cells_body(
-          columns = {{var}},
-          rows = df$color_group == as.numeric(group)
-        )
-      )
+      dplyr::group_by(!!dupe_group_var) %>%
+      dplyr::mutate(!!color_group_var := dplyr::if_else(is.na(!!dupe_group_var),
+                                                        NA_integer_, dplyr::cur_group_id())) %>%
+      dplyr::ungroup()
   }
 
-  print(gt_table)
+  gt_table <- gt::gt(df)
+
+  for (var in vars) {
+    dupe_group_var <- paste0(var, "_dupe_group")
+    color_group_var <- paste0(var, "_color_group")
+
+    unique_groups <- unique(na.omit(df[[color_group_var]]))
+    colors <- scales::hue_pal()(length(unique_groups))
+    names(colors) <- unique_groups
+
+    for (group in names(colors)) {
+      gt_table <- gt::tab_style(gt_table,
+                                style = gt::cell_fill(color = colors[group]),
+                                locations = gt::cells_body(
+                                  columns = var,
+                                  rows = df[[color_group_var]] == as.numeric(group)
+                                )
+      )
+    }
+  }
+
+  gt_table
 }

@@ -2,26 +2,23 @@
 % Please edit documentation in R/tar_color_duplicates.R
 \name{tar_color_duplicates}
 \alias{tar_color_duplicates}
-\title{Color duplicate cells within specific column.}
+\title{Color Duplicate Cells in Specified Columns}
 \usage{
-tar_color_duplicates(df, var)
+tar_color_duplicates(df, vars)
 }
 \arguments{
-\item{df}{The input data frame.}
+\item{df}{A data frame in which to look for duplicates.}
 
-\item{var}{The column to be used for coloring duplicates.}
+\item{vars}{A vector of column names in which to look for duplicates.}
 }
 \value{
-A gt table with colored duplicate groups.
+A `gt` table with colored duplicate groups.
 }
 \description{
-To visually identify this function will color duplicates in a column.
+This function colors cells in specified columns (n=x) of a dataframe that are duplicates.
+It is useful for visually identifying duplicates in a `gt` table format.
 }
 \examples{
-# Example usage:
-tar_color_duplicates(mtcars, cyl)
+tar_color_duplicates(mtcars, c("cyl", "mpg"))
 
-}
-\author{
-tarjae
 }
