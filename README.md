@@ -8,7 +8,7 @@
 [![CRAN status](https://www.r-pkg.org/badges/version/hipecR)](https://CRAN.R-project.org/package=hipecR)
 <!-- badges: end -->
 
-The goal of hipecR is to provide a bunch of helpful function for patient data analysis and some essential functions to calculate the peritoneal surface area (PSA) individually for each patient. After calculating the global PSA, we are able to assess the quantitative PSA before and after cytoredution (surgery).The underlying idea is to provide a reproducible and comparable definition of the resected PSA across different instituions. The next step is to calculate the dosage of the chemotherapy during hyperthermic intraperitoneal chemotherapy (HIPEC) adapted to the remaining PSA.
+The goal of hipecR is to offer a collection of useful functions for analyzing patient data, including some essential functions for calculating the Peritoneal Surface Area (PSA) individually for each patient. After determining the global PSA, we can assess the quantitative PSA before and after cytoreduction (surgery). The underlying idea is to provide a reproducible and comparable definition of the resected PSA across different institutions. The next step involves calculating the dosage of chemotherapy during Hyperthermic Intraperitoneal Chemotherapy (HIPEC), adapted to the remaining PSA.
 
 ## Installation
 
