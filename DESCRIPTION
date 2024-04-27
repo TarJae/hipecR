@@ -28,4 +28,5 @@ Imports:
     gt,
     scales,
     ggplot2,
-    rlang
+    rlang,
+    forcats

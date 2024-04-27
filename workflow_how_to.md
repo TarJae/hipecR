@@ -1,6 +1,8 @@
 #### ADD YOUR FUNCTIONS!
+ 
  - Create `funcs.R` in the `/R` folder - Copy paste your code inside
     (Try to be explicit `package::function` at least once per used function per your function)
+ 
  - createOxygen for each function - commit function to memory, doubleclick title, run addin
 sinew::makeImport("R", format = "description") and add to DESCRIPTION
  - In Build menu >> More >> Configure Build tools >> Generate Documentation >> Install and Restart
