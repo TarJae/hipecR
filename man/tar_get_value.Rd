@@ -4,25 +4,30 @@
 \alias{tar_get_value}
 \title{Look-up function}
 \usage{
-tar_get_value(df, mykeyvalue)
+tar_get_value(df, mykeyvalues)
 }
 \arguments{
 \item{df}{data frame with Name and azl number}
 
-\item{mykeyvalue}{an unquoted key or value}
+\item{mykeyvalues}{is a vector containing the key values to be looked up in the data frame.
+These key values can be either numeric or character strings. The function processes each key
+value individually to determine if it matches entries in the specified columns of the data frame}
 }
 \value{
 a key or value, depending on what is wanted
 }
 \description{
-Look-up function
+This function takes a data frame df and a vector of
+key values mykeyvalues. It returns an unnamed vector of corresponding
+results by performing lookups in the data frame.
 }
 \examples{
 # Example data
 df <- data.frame(Name = c("Hans", "Maria", "Franz HUBER"), azl = c("1006341612", "1040405318", "1060707219"), stringsAsFactors = FALSE)
 
-tar_get_value(df, HUBER)       # Should return "1060707219"
-tar_get_value(df, huber)       # Should also return "1060707219"
-tar_get_value(df, Franz)       # Should return "1060707219"
+tar_get_value(df, "HUBER")       # Should return "1060707219"
+tar_get_value(df, "huber")       # Should also return "1060707219"
+tar_get_value(df, "Franz")       # Should return "1060707219"
 tar_get_value(df, 1006341612)  # Should return "Hans"
+tar_get_value(df, c(1006341612, 1040405318)) # Should return "Hans"  "Maria"
 }
