@@ -29,4 +29,7 @@ Imports:
     scales,
     ggplot2,
     rlang,
-    forcats
+    forcats,
+    survminer,
+    survival,
+    gridExtra
