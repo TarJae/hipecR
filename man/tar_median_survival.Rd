@@ -2,40 +2,24 @@
 % Please edit documentation in R/tar_median_survival.R
 \name{tar_median_survival}
 \alias{tar_median_survival}
-\title{Plot Median Survival Curves with Custom Font Sizes}
+\title{Plot Survival Curves and Save with Median Annotations}
 \usage{
-tar_median_survival(
-  df,
-  var,
-  time_col = "time",
-  status_col = "status",
-  palette = "jco",
-  font_size = 7,
-  risk_table_font_size = 5
-)
+tar_median_survival(df, var, time_col = "time", status_col = "status")
 }
 \arguments{
 \item{df}{A data frame containing the survival data.}
 
-\item{var}{A variable name (as an unquoted variable or character string) that defines the groups for the survival curves.}
+\item{var}{A variable used for grouping the survival curves.}
 
-\item{time_col}{A string specifying the name of the column containing the survival times. Default is "time".}
+\item{time_col}{A string specifying the name of the column representing time.}
 
-\item{status_col}{A string specifying the name of the column containing the event status (1 = event, 0 = censored). Default is "status".}
-
-\item{palette}{A string specifying the color palette for the plots. Default is "jco".}
-
-\item{font_size}{A numeric value specifying the font size for the plot text. Default is 7.}
-
-\item{risk_table_font_size}{A numeric value specifying the font size for the risk table text. Default is 5.}
+\item{status_col}{A string specifying the name of the column representing status.}
 }
 \value{
-A list of ggplot objects representing the survival curves for each level of the specified variable.
+The function prints the survival plot and saves it to the output directory.
 }
 \description{
-This function generates survival plots with risk tables for different levels
-of a specified variable. It allows customization of font sizes for both the
-plot and the risk table.
+This function fits a survival model, plots the survival curves, annotates median survival times, and saves the plot to a specified output directory.
 }
 \examples{
 # Example dataset
@@ -47,8 +31,5 @@ df_survival <- structure(list(
   subtype = structure(c(2L, 1L, 2L, 3L, 2L, 3L, 1L, 1L, 1L, 2L), levels = c("adenocarcinoma", "mucinous", "signet ring cell"), label = "Histological subtype", class = "factor")
 ), row.names = c(NA, -10L), class = c("tbl_df", "tbl", "data.frame"))
 
-library(hipecR)
-library(gridExtra)
-plots <- tar_median_survival(df_survival, primorgan, font_size = 10, risk_table_font_size = 8)
-do.call(grid.arrange, c(plots, ncol = 2))
+tar_median_survival(df = df_survival, var = sex, time_col = "time", status_col = "status")
 }

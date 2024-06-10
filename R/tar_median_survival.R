@@ -1,23 +1,21 @@
-#' Plot Median Survival Curves with Custom Font Sizes
+#' Plot Survival Curves and Save with Median Annotations
 #'
-#' This function generates survival plots with risk tables for different levels
-#' of a specified variable. It allows customization of font sizes for both the
-#' plot and the risk table.
+#' This function fits a survival model, plots the survival curves, annotates median survival times, and saves the plot to a specified output directory.
 #'
 #' @param df A data frame containing the survival data.
-#' @param var A variable name (as an unquoted variable or character string) that defines the groups for the survival curves.
-#' @param time_col A string specifying the name of the column containing the survival times. Default is "time".
-#' @param status_col A string specifying the name of the column containing the event status (1 = event, 0 = censored). Default is "status".
-#' @param palette A string specifying the color palette for the plots. Default is "jco".
-#' @param font_size A numeric value specifying the font size for the plot text. Default is 7.
-#' @param risk_table_font_size A numeric value specifying the font size for the risk table text. Default is 5.
-#' @return A list of ggplot objects representing the survival curves for each level of the specified variable.
+#' @param var A variable used for grouping the survival curves.
+#' @param time_col A string specifying the name of the column representing time.
+#' @param status_col A string specifying the name of the column representing status.
+#'
+#' @return The function prints the survival plot and saves it to the output directory.
+#' @export
 #' @importFrom survival Surv
 #' @importFrom survminer ggsurvplot surv_fit
-#' @importFrom dplyr mutate filter %>%
-#' @importFrom ggplot2 theme_minimal element_text
-#' @importFrom gridExtra grid.arrange
-#' @export
+#' @importFrom ggplot2 annotate scale_x_continuous ggsave theme_bw element_text
+#' @importFrom dplyr tibble
+#' @importFrom labelled get_variable_labels
+#' @importFrom here here
+#'
 #' @examples
 #' # Example dataset
 #' df_survival <- structure(list(
@@ -28,82 +26,89 @@
 #'   subtype = structure(c(2L, 1L, 2L, 3L, 2L, 3L, 1L, 1L, 1L, 2L), levels = c("adenocarcinoma", "mucinous", "signet ring cell"), label = "Histological subtype", class = "factor")
 #' ), row.names = c(NA, -10L), class = c("tbl_df", "tbl", "data.frame"))
 #'
-#' library(hipecR)
-#' library(gridExtra)
-#' plots <- tar_median_survival(df_survival, primorgan, font_size = 10, risk_table_font_size = 8)
-#' do.call(grid.arrange, c(plots, ncol = 2))
-tar_median_survival <- function(df, var, time_col = "time", status_col = "status", palette = "jco", font_size = 7, risk_table_font_size = 5) {
-  # Convert var to a string if it's not already
+#' tar_median_survival(df = df_survival, var = sex, time_col = "time", status_col = "status")
+
+tar_median_survival <- function(df, var, time_col = "time", status_col = "status") {
+  # Convert the variable to a string
   var <- as.character(substitute(var))
 
-  # Create the formula dynamically
+  # Create the formula
   formula <- as.formula(paste("Surv(", time_col, ",", status_col, ") ~", var))
 
-  # Fit the survival curves using the variable
+  # Fit the survival model
   fit <- try(surv_fit(formula, data = df), silent = TRUE)
-
   if (inherits(fit, "try-error")) {
     warning("The survival model could not be fitted. Please check the input data.")
     return(NULL)
   }
 
-  # Define a custom theme for the risk table
-  risk_table_theme <- theme(
-    text = element_text(size = risk_table_font_size)
-  )
+  # Get the median survival times
+  medians <- summary(fit)$table[, "median"]
 
-  # Plotting the survival curves with risk table and median survival annotations
-  surv_plot <- ggsurvplot(
+  # Draw the survival curves
+  plot <- ggsurvplot(
     fit,
     data = df,
-    palette = palette,
-    ggtheme = theme_minimal() + tar_ggplot_font_size(font_size),  # Integrate custom font size for plot
-    legend.title = var,
-    risk.table = TRUE,            # Add risk table
-    risk.table.height = 0.25,     # Adjust the height of the risk table
-    risk.table.col = "strata",    # Color the risk table by strata
+    size = 1,                 # Change line size
+    palette = "jco",
+    conf.int = TRUE,          # Add confidence interval
+    pval = TRUE,
+    pval.coord = c(55, 0.95), # Position p-value in the right upper corner
+    risk.table = TRUE,        # Add risk table
+    risk.table.col = "strata",# Risk table color by groups
+    risk.table.y.text = FALSE,
+    legend.labs = unique(df[[var]]),
+    legend.title = get_variable_labels(df[[var]]),
     surv.median.line = "hv",      # Add median survival lines
-    pval = TRUE,                  # Add p-value for log-rank test
-    conf.int = TRUE,              # Add confidence intervals for survival curves
-    tables.theme = risk_table_theme  # Apply custom risk table theme
+    ggtheme = theme_bw() + tar_ggplot_font_size(5),
+    xlim = c(0, 60),          # Limit x-axis to 60 months
+    break.time.by = 12        # Break x-axis at 0, 12, 24, 36, 48, 60
   )
 
-  print(surv_plot)
+  # Create annotation data frame
+  annotation_df <- tibble(
+    x = medians,
+    y = rep(0.5, length(medians)),
+    label = ifelse(is.na(medians), "", "X"),
+    size = 7,
+    color = "red"
+  )
 
-  # Alternatively, to plot individual curves separately with risk tables and median survival annotations:
-  var_levels <- levels(as.factor(df[[var]]))  # Ensure levels are correctly interpreted
-  plots <- list()
+  # Create annotation data frame for median values
+  median_annotation_df <- tibble(
+    x = medians + 1,
+    y = rep(0, length(medians)),
+    label = ifelse(is.na(medians), "", as.character(medians)),
+    size = 5,
+    color = "red"
+  )
 
-  for (level in var_levels) {
-    df_filtered <- df %>% filter(df[[var]] == level)
-    fit_filtered <- try(surv_fit(Surv(df_filtered[[time_col]], df_filtered[[status_col]]) ~ 1, data = df_filtered), silent = TRUE)
+  # Add annotations to the plot
+  plot$plot <- plot$plot +
+    annotate("text", x = annotation_df$x, y = annotation_df$y, label = annotation_df$label, size = 7, color = "red") +
+    annotate("text", x = median_annotation_df$x, y = median_annotation_df$y, label = median_annotation_df$label, size = 5, color = "red") +
+    scale_x_continuous(breaks = seq(0, 60, by = 12)) # Set x-axis breaks
 
-    if (inherits(fit_filtered, "try-error")) {
-      warning(paste("The survival model could not be fitted for", level, "."))
-      next
-    }
+  # Print the plot
+  print(plot)
 
-    plot <- ggsurvplot(
-      fit_filtered,
-      data = df_filtered,
-      palette = "#2E9FDF",
-      ggtheme = theme_minimal() + tar_ggplot_font_size(font_size),  # Integrate custom font size for plot
-      title = paste("Survival Curve for", level),
-      risk.table = TRUE,            # Add risk table
-      risk.table.height = 0.25,     # Adjust the height of the risk table
-      risk.table.col = "strata",    # Color the risk table by strata
-      legend.labs = level,
-      legend.title = var,
-      surv.median.line = "hv",      # Add median survival lines
-      pval = TRUE,                  # Add p-value for log-rank test
-      conf.int = TRUE,              # Add confidence intervals for survival curves
-      tables.theme = risk_table_theme  # Apply custom risk table theme
-    )
-    # Add median survival annotation
-    median_surv <- summary(fit_filtered)$table["median"]
-    plot$plot <- plot$plot + ggplot2::annotate("text", x = median_surv, y = 0.6, label = paste("    ", round(median_surv, 0)), size = font_size, color = "red")
-    plots[[level]] <- plot$plot
+  # Ensure the output directory exists
+  output_dir <- here::here("output")
+  if (!dir.exists(output_dir)) {
+    dir.create(output_dir, recursive = TRUE)
   }
 
-  return(plots)
+  # Save the plot
+  output_file <- here::here(output_dir, paste0("survival_", var, ".png"))
+  ggsave(output_file, plot$plot, width = 10, height = 7, units = "in", dpi = 300, bg = "white")
+
+  message("Plot saved to: ", output_file)
 }
+
+# Example usage
+tar_median_survival(
+  df = df_survival,
+  var = sex,
+  time_col = "time",
+  status_col = "status"
+)
