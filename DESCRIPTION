@@ -34,4 +34,9 @@ Imports:
     survival,
     gridExtra,
     labelled,
-    here
+    here,
+    gganimate,
+    magick,
+    tidyr,
+    tibble,
+    gifski
