@@ -39,4 +39,5 @@ Imports:
     magick,
     tidyr,
     tibble,
-    gifski
+    gifski, 
+    curl
