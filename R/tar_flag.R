@@ -15,6 +15,7 @@
 #' @import ggplot2
 #' @import magick
 #' @import curl
+#' @export
 
 tar_flag <- function(countries, name) {
 
