@@ -40,4 +40,7 @@ Imports:
     tidyr,
     tibble,
     gifski, 
-    curl
+    curl,
+    htmltools,
+    webshot2,
+    fs
