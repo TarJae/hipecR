@@ -61,8 +61,16 @@ tar_animbar <- function(x, filename = "my_animated_bar", color1 = "steelblue1", 
     ggplot(aes("", value_group, fill = color_group)) +
     geom_col(width = 0.4, position = position_fill()) +
     scale_fill_manual(values = c(color1, color2)) +
-    theme_void() +
-    theme(legend.position = "none") +
+    theme(
+      axis.title = element_blank(),
+      axis.text = element_blank(),
+      axis.ticks = element_blank(),  # Remove axis ticks
+      panel.grid = element_blank(),
+      panel.border = element_blank(),
+      plot.background = element_blank(),
+      panel.background = element_blank(),
+      legend.position = "none"
+    ) +
     transition_states(value,
                       transition_length = transition_length,
                       state_length = state_length,
