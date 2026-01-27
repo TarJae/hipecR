@@ -7,7 +7,7 @@
 tar_head_tail(data, nh = 5, nt = 5)
 }
 \arguments{
-\item{data}{A dataframe or tibble whose head and tail you wish to view.}
+\item{data}{A data frame or tibble whose head and tail you wish to view.}
 
 \item{nh}{An integer specifying the number of rows from the start of `data` to display. Default is 5.}
 

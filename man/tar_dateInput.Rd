@@ -12,13 +12,13 @@ tar_dateInput(inputId, label)
 \item{label}{character}
 }
 \value{
-returns a date in dd-MM-yyyy format
+A date input in dd-MM-yyyy format.
 }
 \description{
 Handles date format in Austrian HIPEC Registry(c)
 }
 \details{
-DETAILS
+Wraps shinyWidgets::airDatepickerInput with fixed defaults.
 }
 \examples{
 \dontrun{

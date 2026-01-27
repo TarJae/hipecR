@@ -17,3 +17,8 @@ tar_impute_outlier(df, variable)
 \description{
 Imputates outliers and shows 4 different method plots
 }
+\examples{
+\dontrun{
+tar_impute_outlier(mtcars, mpg)
+}
+}

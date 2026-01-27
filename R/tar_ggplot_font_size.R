@@ -24,6 +24,9 @@
 #' control the font size of axis, legend, title and text with this function.
 #'
 tar_ggplot_font_size <- function(geom_text_size = 7) {
+  if (!is.numeric(geom_text_size) || length(geom_text_size) != 1 || is.na(geom_text_size) || geom_text_size <= 0) {
+    stop("geom_text_size must be a single positive number.")
+  }
   theme_size <- (14/5) * geom_text_size
   theme(axis.text = element_text(size = theme_size, colour = "black"),
         legend.text = element_text(size = theme_size),

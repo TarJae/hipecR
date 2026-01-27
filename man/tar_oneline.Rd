@@ -7,31 +7,29 @@
 tar_oneline()
 }
 \value{
-re-formats the multiline code to one line code
+A character vector with the reformatted one-line code.
 }
 \description{
-creates a one liner from a multiline code example
-}
-\details{
-DETAILS
+Creates a one-liner from a multiline code example in the clipboard.
 }
 \examples{
 \dontrun{
-if(interactive()){
- # Your multiline string
- # copy this code
- numericInput(
- 'Register_Nr',
- 'Nr.',
- min = 0,
- max = 20,
- step = 1,
- value = 0
- )
- }
- }
- # then apply
- tar_oneline
+if (interactive()) {
+  # Your multiline string
+  # copy this code
+  numericInput(
+    "Register_Nr",
+    "Nr.",
+    min = 0,
+    max = 20,
+    step = 1,
+    value = 0
+  )
+}
+
+# then apply
+tar_oneline()
+}
 }
 \seealso{
 \code{\link[formatR]{tidy_source}}

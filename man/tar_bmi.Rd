@@ -2,23 +2,21 @@
 % Please edit documentation in R/tar_bmi.R
 \name{tar_bmi}
 \alias{tar_bmi}
-\title{Calculating BMI (kg/m²)}
+\title{Calculating BMI (kg/m^2)}
 \usage{
 tar_bmi(weight, height)
 }
 \arguments{
 \item{weight}{Numeric, kg}
 
-\item{height}{Numeric, meter}
+\item{height}{Numeric, cm}
 }
 \value{
 body mass index BMI
 }
 \description{
-Calculating BMI (kg/m²)
+Calculating BMI (kg/m^2)
 }
 \examples{
-weight = 100
-height = 1.90
-tar_bmi(weight, height)
+tar_bmi(weight = 100, height = 190)
 }

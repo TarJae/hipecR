@@ -10,3 +10,6 @@
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
+^my_animated_bar\.gif$
+^workflow_how_to\.md$
+^AGENTS\.md$

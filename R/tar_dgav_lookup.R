@@ -1,7 +1,7 @@
 # Function to handle unquoted inputs
-#' Look-up function
-#' @description This function takes a data frame df and a vector of
-#' key values mykeyvalues. It returns an unnamed vector of corresponding
+#' Look-up function for DGAV registry IDs/names
+#' @description This function takes a data frame `df` and a vector of
+#' key values `mykeyvalues`. It returns an unnamed vector of corresponding
 #' results by performing lookups in the data frame.
 #' @param mykeyvalues is a vector containing the key values to be looked up in the data frame.
 #' These key values can be either numeric or character strings. The function processes each key
@@ -15,17 +15,20 @@
 #'
 #' @examples
 #' # Example data
-#' df <- data.frame(Name = c("Hans", "Maria", "Franz HUBER"), azl = c("1006341612", "1040405318", "1060707219"), stringsAsFactors = FALSE)
+#' df <- data.frame(
+#'   Name = c("Hans", "Maria", "Franz HUBER"),
+#'   azl = c("1006341612", "1040405318", "1060707219"),
+#'   stringsAsFactors = FALSE
+#' )
 #'
-#' tar_get_value(df, "HUBER")       # Should return "1060707219"
-#' tar_get_value(df, "huber")       # Should also return "1060707219"
-#' tar_get_value(df, "Franz")       # Should return "1060707219"
-#' tar_get_value(df, 1006341612)  # Should return "Hans"
-#' tar_get_value(df, c(1006341612, 1040405318)) # Should return "Hans"  "Maria"
-
-
-# Function to handle inputs for data frame
-tar_get_value <- function(df, mykeyvalues) {
+#' tar_dgav_lookup(df, "HUBER")       # Should return "1060707219"
+#' tar_dgav_lookup(df, "huber")       # Should also return "1060707219"
+#' tar_dgav_lookup(df, "Franz")       # Should return "1060707219"
+#' tar_dgav_lookup(df, 1006341612)  # Should return "Hans"
+#' tar_dgav_lookup(df, c(1006341612, 1040405318)) # Should return "Hans"  "Maria"
+#'
+#' # Function to handle inputs for data frame
+tar_dgav_lookup <- function(df, mykeyvalues) {
   results <- c()
 
   for (mykeyvalue in mykeyvalues) {
@@ -50,4 +53,3 @@ tar_get_value <- function(df, mykeyvalues) {
 
   return(results)
 }
-

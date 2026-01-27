@@ -12,12 +12,12 @@ tar_psa(height, weight)
 \item{weight}{A numeric value representing the weight in kg.}
 }
 \value{
-A numeric value representing 1% of the peritoneal surface area in cm².
+A numeric value representing 1% of the peritoneal surface area in cm^2.
 }
 \description{
-This function calculates 1% of the peritoneal surface area in cm² based on
+This function calculates 1% of the peritoneal surface area in cm^2 based on
 the given height and weight. It's used as a factor for further calculations.
 }
 \examples{
-tar_psa(180, 80) # Expected output: 199.6421 cm²
+tar_psa(180, 80) # Expected output: 199.6421 cm^2
 }

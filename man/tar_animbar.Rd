@@ -10,11 +10,17 @@ tar_animbar(
   color1 = "steelblue1",
   color2 = "purple3",
   title = "\%",
-  horizontal = FALSE
+  horizontal = FALSE,
+  total = 100,
+  fps = 24,
+  base_duration = 15,
+  output_dir = ".",
+  overwrite = FALSE,
+  ask = interactive()
 )
 }
 \arguments{
-\item{x}{An integer indicating the maximum value for the bar chart.}
+\item{x}{An integer indicating the value for the bar chart.}
 
 \item{filename}{A string specifying the name of the output file (default: "my_animated_bar").}
 
@@ -22,12 +28,24 @@ tar_animbar(
 
 \item{color2}{A string specifying the color for the second part of the bar (default: "purple3").}
 
-\item{title}{A string specifying the title suffix for the animation (default: "\%").}
+\item{title}{A string specifying the title suffix for the animation (default: percent sign).}
 
 \item{horizontal}{A logical value indicating whether the bar chart should be horizontal (default: FALSE).}
+
+\item{total}{An integer indicating the maximum value for the bar chart scale (default: 100).}
+
+\item{fps}{Frames per second for the animation (default: 24).}
+
+\item{base_duration}{Base duration (seconds) for a full-scale animation (default: 15).}
+
+\item{output_dir}{Output directory for the GIF (default: current working directory).}
+
+\item{overwrite}{Logical; overwrite an existing GIF (default: FALSE).}
+
+\item{ask}{Logical; if TRUE, prompt when file exists (default: interactive()).}
 }
 \value{
-No return value. The function generates and saves an animated bar chart as a GIF file.
+Invisible path to the generated GIF file.
 }
 \description{
 This function creates an animated bar chart with customizable colors and orientation. The resulting GIF can be saved to a specified filename.
@@ -37,8 +55,16 @@ This function generates an animated bar chart with customizable colors and orien
 The resulting GIF can be saved to a specified filename.
 }
 \examples{
-tar_animbar(x = 100, filename = "a3", color1 = "gold", color2 = "purple3", title = "\%", horizontal = TRUE)
-tar_animbar(x = 45, filename = "a4", color1 = "steelblue", color2 = "purple3", title = "\%", horizontal = FALSE)
-tar_animbar(x = 17, filename = "rapido_LRR", horizontal = FALSE)
+\dontrun{
+tar_animbar(x = 10, filename = "a3", color1 = "gold", color2 = "purple3",
+            horizontal = TRUE, total = 10, fps = 5, base_duration = 1,
+            output_dir = tempdir(), overwrite = TRUE, ask = FALSE)
+tar_animbar(x = 5, filename = "a4", color1 = "steelblue", color2 = "purple3",
+            horizontal = FALSE, total = 10, fps = 5, base_duration = 1,
+            output_dir = tempdir(), overwrite = TRUE, ask = FALSE)
+tar_animbar(x = 3, filename = "rapido_LRR", horizontal = FALSE, total = 10,
+            fps = 5, base_duration = 1, output_dir = tempdir(),
+            overwrite = TRUE, ask = FALSE)
+}
 
 }

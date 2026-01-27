@@ -17,7 +17,7 @@ returns a wellpanel a quasi shinydashboard box
 Creates a shinydashboard box equivalent with shiny
 }
 \details{
-DETAILS
+Builds a wellPanel containing follow-up inputs for the given month.
 }
 \examples{
 \dontrun{

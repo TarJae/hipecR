@@ -7,16 +7,13 @@
 tar_count_na(df)
 }
 \arguments{
-\item{df}{a data frame}
+\item{df}{A data frame or tibble.}
 }
 \value{
-returns
+A named numeric vector with NA counts per column.
 }
 \description{
-Counts NA's across columns
-}
-\details{
-DETAILS
+Counts NA values across columns.
 }
 \examples{
 \dontrun{

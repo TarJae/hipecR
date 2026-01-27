@@ -9,6 +9,9 @@
 #' @importFrom ggpubr ggarrange
 #' @importFrom dlookr imputate_outlier
 #' @examples
+#' \dontrun{
+#' tar_impute_outlier(mtcars, mpg)
+#' }
 
 tar_impute_outlier <- function(df, variable) {
   # Generate plots

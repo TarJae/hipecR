@@ -1,6 +1,6 @@
 #' @title Short Installer
 #' @description Function to facilitate the use of
-#' install.packages("dplyr") as tar_i(dplyr).
+#' install.packages("dplyr") as tar_install(dplyr).
 #' @param x The name of the package you want to install.
 #' @return Installs a package.
 #' @details This function uses non-standard evaluation to allow you to specify
@@ -8,12 +8,12 @@
 #' @examples
 #' \dontrun{
 #' if (interactive()) {
-#'   tar_i(dplyr)
+#'   tar_install(dplyr)
 #' }
 #' }
-#' @rdname tar_i
+#' @rdname tar_install
 #' @export
-tar_i <- function(x) {
+tar_install <- function(x) {
   x <- deparse(substitute(x))
-  install.packages(x)
+  utils::install.packages(x)
 }

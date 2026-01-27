@@ -1,3 +1,8 @@
+# hipecR 2.0.0
+
+* BREAKING: Refactored all functions.
+* Improved overall code quality.
+
 # hipecR 0.1.0
 
 * Added a `NEWS.md` file to track changes to the package.

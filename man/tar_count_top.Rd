@@ -7,9 +7,9 @@
 tar_count_top(df, var, n = 5)
 }
 \arguments{
-\item{df}{A dataframe containing the variable to be manipulated.}
+\item{df}{A data frame containing the variable to be manipulated.}
 
-\item{var}{The name of the factor variable within the dataframe as a string.}
+\item{var}{The variable (unquoted) within the data frame.}
 
 \item{n}{The number of top levels to keep before lumping others into 'Other'; default is 5.}
 }

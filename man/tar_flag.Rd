@@ -4,22 +4,37 @@
 \alias{tar_flag}
 \title{Create a combined flag plot}
 \usage{
-tar_flag(countries, name)
+tar_flag(
+  countries,
+  name,
+  output_dir = "images",
+  overwrite = FALSE,
+  ask = interactive()
+)
 }
 \arguments{
 \item{countries}{A character vector of country codes (ISO 3166\-1 alpha\-2).}
 
 \item{name}{A character string for the name of the study. This will be used
 to construct the output file name.}
+
+\item{output_dir}{A directory for the output file (default: "images").}
+
+\item{overwrite}{Logical; overwrite an existing PNG (default: FALSE).}
+
+\item{ask}{Logical; if TRUE, prompt when file exists (default: interactive()).}
 }
 \value{
-None. The function saves the combined flag image to a file.
+Invisible path to the saved PNG file.
 }
 \description{
 This function downloads flag images of specified countries, combines them
 vertically with spaces in between, and saves the combined image to a file.
 }
 \examples{
+\dontrun{
 tar_flag(c("nl", "se", "es", "si", "dk", "no", "us"), "rapido")
+tar_flag(c("at", "de"), "demo", output_dir = "images", overwrite = TRUE)
+}
 
 }

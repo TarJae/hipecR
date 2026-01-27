@@ -7,9 +7,9 @@
 tar_age(birth_date, x_date)
 }
 \arguments{
-\item{birth_date}{A date value for example "1974-11-23"}
+\item{birth_date}{A date value, e.g. "1974-11-23".}
 
-\item{x_date}{A date value until the age lasts for example "2023-02-16"}
+\item{x_date}{A date value until the age lasts, e.g. "2023-02-16".}
 }
 \value{
 A numeric value in (years)

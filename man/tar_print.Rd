@@ -7,8 +7,8 @@
 tar_print(value = 50)
 }
 \arguments{
-\item{value}{A numeric value to set as the minimum number of rows shown of a tibble in the console.
-Defaults to 50 if not specified.}
+\item{value}{A single non-negative integer for the minimum number of rows
+shown of a tibble in the console. Defaults to 50.}
 }
 \value{
 Invisible null. The function is called for its side effect of setting an option.

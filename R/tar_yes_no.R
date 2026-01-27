@@ -16,5 +16,12 @@
 #' test_vector <- c("yes", "no", "maybe", "yes", "no")
 #' tar_yes_no(test_vector)
 tar_yes_no <- function(x) {
-  ifelse(x == "yes", 1, ifelse(x == "no", 0, NA))
+  if (is.factor(x)) {
+    x <- as.character(x)
+  }
+  if (!is.character(x)) {
+    stop("x must be a character vector.")
+  }
+  x <- trimws(tolower(x))
+  ifelse(x == "yes", 1, ifelse(x == "no", 0, NA_integer_))
 }

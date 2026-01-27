@@ -22,14 +22,33 @@ The function prints the survival plot and saves it to the output directory.
 This function fits a survival model, plots the survival curves, annotates median survival times, and saves the plot to a specified output directory.
 }
 \examples{
+\dontrun{
 # Example dataset
-df_survival <- structure(list(
-  status = c(1, 0, 1, 1, 1, 1, 0, 1, 1, 0),
-  primorgan = structure(c(1L, 1L, 1L, 2L, 1L, 1L, 1L, 2L, 2L, 2L), levels = c("Colon", "Rectum"), class = "factor"),
-  sex = structure(c("male", "female", "male", "male", "male", "male", "male", "male", "male", "female"), label = "Gender"),
-  time = c(4.26, 49.52, 18.05, 11.04, 47.67, 8.03, 76.2, 15.44, 22.74, 50.64),
-  subtype = structure(c(2L, 1L, 2L, 3L, 2L, 3L, 1L, 1L, 1L, 2L), levels = c("adenocarcinoma", "mucinous", "signet ring cell"), label = "Histological subtype", class = "factor")
-), row.names = c(NA, -10L), class = c("tbl_df", "tbl", "data.frame"))
+df_survival <- structure(
+  list(
+    status = c(1, 0, 1, 1, 1, 1, 0, 1, 1, 0),
+    primorgan = structure(
+      c(1L, 1L, 1L, 2L, 1L, 1L, 1L, 2L, 2L, 2L),
+      levels = c("Colon", "Rectum"),
+      class = "factor"
+    ),
+    sex = structure(
+      c("male", "female", "male", "male", "male",
+        "male", "male", "male", "male", "female"),
+      label = "Gender"
+    ),
+    time = c(4.26, 49.52, 18.05, 11.04, 47.67, 8.03, 76.2, 15.44, 22.74, 50.64),
+    subtype = structure(
+      c(2L, 1L, 2L, 3L, 2L, 3L, 1L, 1L, 1L, 2L),
+      levels = c("adenocarcinoma", "mucinous", "signet ring cell"),
+      label = "Histological subtype",
+      class = "factor"
+    )
+  ),
+  row.names = c(NA, -10L),
+  class = c("tbl_df", "tbl", "data.frame")
+)
 
 tar_median_survival(df = df_survival, var = sex, time_col = "time", status_col = "status")
+}
 }
