@@ -1,4 +1,4 @@
-#' Create a combined flag plot
+﻿#' Create a combined flag plot
 #'
 #' This function downloads flag images of specified countries, combines them
 #' vertically with spaces in between, and saves the combined image to a file.
@@ -6,16 +6,18 @@
 #' @param countries A character vector of country codes (ISO 3166\-1 alpha\-2).
 #' @param name A character string for the name of the study. This will be used
 #'        to construct the output file name.
-#' @param output_dir A directory for the output file (default: "images").
+#' @param output_dir A directory for the output file (default: temporary directory).
 #' @param overwrite Logical; overwrite an existing PNG (default: FALSE).
 #' @param ask Logical; if TRUE, prompt when file exists (default: interactive()).
 #'
 #' @return Invisible path to the saved PNG file.
 #'
 #' @examples
-#' \dontrun{
-#' tar_flag(c("nl", "se", "es", "si", "dk", "no", "us"), "rapido")
-#' tar_flag(c("at", "de"), "demo", output_dir = "images", overwrite = TRUE)
+#' \donttest{
+#' if (interactive()) {
+#'   tar_flag(c("nl", "se", "es", "si", "dk", "no", "us"), "rapido")
+#'   tar_flag(c("at", "de"), "demo", output_dir = tempdir(), overwrite = TRUE)
+#' }
 #' }
 #'
 #' @import magick
@@ -24,7 +26,7 @@
 
 tar_flag <- function(countries,
                      name,
-                     output_dir = "images",
+                     output_dir = tempdir(),
                      overwrite = FALSE,
                      ask = interactive()) {
 
@@ -113,4 +115,7 @@ tar_flag <- function(countries,
 
   invisible(output_file)
 }
+
+
+
 

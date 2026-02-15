@@ -23,7 +23,7 @@ This function transforms the specified factor variable within a dataframe to lum
 This function leverages `dplyr` for data manipulation and `forcats` for managing factor levels. It is particularly useful in data summarization where the focus is on the most frequent categories.
 }
 \examples{
-\dontrun{
+\donttest{
 if(interactive()){
   data <- data.frame(color = c("red", "blue", "green", "blue", "blue", "red", "yellow", "red"))
   print(tar_count_top(data, color, n = 2))

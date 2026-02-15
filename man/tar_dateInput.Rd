@@ -21,7 +21,7 @@ Handles date format in Austrian HIPEC Registry(c)
 Wraps shinyWidgets::airDatepickerInput with fixed defaults.
 }
 \examples{
-\dontrun{
+\donttest{
 if(interactive()){
  #EXAMPLE1
  }

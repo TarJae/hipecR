@@ -14,7 +14,7 @@ tar_animbar(
   total = 100,
   fps = 24,
   base_duration = 15,
-  output_dir = ".",
+  output_dir = tempdir(),
   overwrite = FALSE,
   ask = interactive()
 )
@@ -38,7 +38,7 @@ tar_animbar(
 
 \item{base_duration}{Base duration (seconds) for a full-scale animation (default: 15).}
 
-\item{output_dir}{Output directory for the GIF (default: current working directory).}
+\item{output_dir}{Output directory for the GIF (default: temporary directory).}
 
 \item{overwrite}{Logical; overwrite an existing GIF (default: FALSE).}
 
@@ -55,16 +55,18 @@ This function generates an animated bar chart with customizable colors and orien
 The resulting GIF can be saved to a specified filename.
 }
 \examples{
-\dontrun{
-tar_animbar(x = 10, filename = "a3", color1 = "gold", color2 = "purple3",
-            horizontal = TRUE, total = 10, fps = 5, base_duration = 1,
-            output_dir = tempdir(), overwrite = TRUE, ask = FALSE)
-tar_animbar(x = 5, filename = "a4", color1 = "steelblue", color2 = "purple3",
-            horizontal = FALSE, total = 10, fps = 5, base_duration = 1,
-            output_dir = tempdir(), overwrite = TRUE, ask = FALSE)
-tar_animbar(x = 3, filename = "rapido_LRR", horizontal = FALSE, total = 10,
-            fps = 5, base_duration = 1, output_dir = tempdir(),
-            overwrite = TRUE, ask = FALSE)
+\donttest{
+if (interactive() && requireNamespace("gifski", quietly = TRUE)) {
+  tar_animbar(x = 10, filename = "a3", color1 = "gold", color2 = "purple3",
+              horizontal = TRUE, total = 10, fps = 5, base_duration = 1,
+              output_dir = tempdir(), overwrite = TRUE, ask = FALSE)
+  tar_animbar(x = 5, filename = "a4", color1 = "steelblue", color2 = "purple3",
+              horizontal = FALSE, total = 10, fps = 5, base_duration = 1,
+              output_dir = tempdir(), overwrite = TRUE, ask = FALSE)
+  tar_animbar(x = 3, filename = "rapido_LRR", horizontal = FALSE, total = 10,
+              fps = 5, base_duration = 1, output_dir = tempdir(),
+              overwrite = TRUE, ask = FALSE)
+}
 }
 
 }

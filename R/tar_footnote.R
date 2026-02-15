@@ -1,4 +1,4 @@
-#' Add Footnote to Graph and Save as PNG
+﻿#' Add Footnote to Graph and Save as PNG
 #'
 #' This function takes a `grViz` graph object, adds a footnote with specified style and text,
 #' and saves the graph along with the footnote as a PNG file. The PNG file is named based on the
@@ -9,17 +9,15 @@
 #' @param string A character string specifying the footnote text.
 #' @param filename Optional output filename (without extension). Defaults to the
 #'   variable name of `graph` if possible.
-#' @param output_dir Output directory (default: current working directory).
+#' @param output_dir Output directory (default: temporary directory).
 #' @param overwrite Logical; overwrite an existing PNG (default: FALSE).
 #' @param ask Logical; if TRUE, prompt when file exists (default: interactive()).
 #'
 #' @return None. The function saves a PNG file in the working directory.
 #' @examples
-#' \dontrun{
-#' library(htmltools)
-#' library(webshot2)
-#'
-#' graph <- grViz("
+#' \donttest{
+#' if (interactive() && requireNamespace("DiagrammeR", quietly = TRUE)) {
+#' graph <- DiagrammeR::grViz("
 #' digraph {
 #' graph [layout = dot]
 #' node [shape = box]
@@ -43,13 +41,14 @@
 #'
 #' tar_footnote(graph, style, string)
 #' }
+#' }
 #' @import htmltools webshot2
 #' @export
 tar_footnote <- function(graph,
                          style,
                          string,
                          filename = NULL,
-                         output_dir = ".",
+                         output_dir = tempdir(),
                          overwrite = FALSE,
                          ask = interactive()) {
   if (!is.character(style) || length(style) != 1 || is.na(style)) {
@@ -110,3 +109,6 @@ tar_footnote <- function(graph,
 
   invisible(png_file)
 }
+
+
+

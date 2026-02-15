@@ -1,4 +1,4 @@
-# https://gist.github.com/gluc/d39cea3d11f03542970b
+﻿# https://gist.github.com/gluc/d39cea3d11f03542970b
 # Get table metadata. For now, just the fields
 # Further development: also define field types
 # and create inputs generically
@@ -10,7 +10,7 @@
 #' @return A list with element `fields`, a named character vector.
 #' @details Expects `variable` and `label` to be the same length.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' if(interactive()){
 #'  #EXAMPLE1
 #'  }
@@ -36,7 +36,7 @@ tar_get_table_metadata <- function(variable = fieldsAll, label = label_names){
 
 #' @return Integer ID.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' if(interactive()){
 #'  #EXAMPLE1
 #'  }
@@ -60,7 +60,7 @@ tar_get_next_id <- function() {
 #' @param data A named list or data frame with registry fields.
 #' @return Invisible NULL.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' if(interactive()){
 #'  #EXAMPLE1
 #'  }
@@ -87,7 +87,7 @@ tar_create_data <- function(data) {
 
 #' @return A data frame or NULL if not available.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' if(interactive()){
 #'  #EXAMPLE1
 #'  }
@@ -107,7 +107,7 @@ tar_read_data <- function() {
 #' @param data A named list or data frame with registry fields.
 #' @return Invisible NULL.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' if(interactive()){
 #'  #EXAMPLE1
 #'  }
@@ -132,7 +132,7 @@ tar_update_data <- function(data) {
 #' @param data A list or data frame containing an `id` field.
 #' @return Invisible NULL.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' if(interactive()){
 #'  #EXAMPLE1
 #'  }
@@ -159,7 +159,7 @@ tar_delete_data <- function(data) {
 #' @param data A list or data frame with registry fields.
 #' @return A one-row data frame with standard column types.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' if(interactive()){
 #'  #EXAMPLE1
 #'  }
@@ -201,7 +201,7 @@ tar_cast_data <- function(data) {
 
 #' @return A one-row data frame with default values.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' if(interactive()){
 #'  #EXAMPLE1
 #'  }
@@ -232,7 +232,7 @@ tar_create_default_record <- function() {
 #' @param session Shiny session.
 #' @return Invisible NULL.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' if(interactive()){
 #'  #EXAMPLE1
 #'  }
@@ -260,3 +260,6 @@ tar_update_inputs <- function(data, session) {
   shiny::updateTextInput(session, "Name_des_ueberpruefenden", value = as.character(data["Name_des_ueberpruefenden"]))
   invisible(NULL)
 }
+
+
+

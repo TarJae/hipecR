@@ -1,32 +1,35 @@
 Package: hipecR
 Type: Package
-Title: A Collection of Helpful Functions for Analysing Patient Data
+Title: Tools for Analysing HIPEC Patient Data
 Version: 2.0.0
 Authors@R: c(
-    person(given = "Tarkan", family = "Jäger",
+    person(given = "Tarkan", family = "Jaeger",
            role = c("aut", "cre"),
            email = "tarkan.jaeger@gmail.com")
  )
-Maintainer: Tarkan Jäger <tarkan.jaeger@gmail.com>
-Description: In addition to several helpful functions for analysing patient data, this package provides functions to calculate the peritoneal surface area (PSA) individually for each patient. 
-    After calculating the global PSA, we are able to assess the quantitative PSA before and after cytoredution (surgery).
-    The underlying idea is to provide a reproducible and comparable definition of the resected PSA across different instituions. 
-    The next step is to calculate the dosage of the chemotherapy during hyperthermic intraperitoneal chemotherapy adapted to the remaining PSA.
-    Meanwhile some function for registry creation are added.
+Maintainer: Tarkan Jaeger <tarkan.jaeger@gmail.com>
+Description: Provides helper functions for analysing patient data in
+    hyperthermic intraperitoneal chemotherapy (HIPEC) workflows.
+    Includes functions to estimate peritoneal surface area (PSA),
+    summarise registry data, and produce reporting graphics.
+    Body surface area calculations are based on Du Bois and Du Bois
+    (1916) <doi:10.1001/archinte.1916.00080130010002>.
 License: MIT + file LICENSE
 URL: https://github.com/TarJae/hipecR
 BugReports: https://github.com/TarJae/hipecR/issues
 Encoding: UTF-8
-LazyData: true
 RoxygenNote: 7.3.3
-Suggests: 
+Depends: R (>= 4.1.0)
+Suggests:
+    DiagrammeR,
+    gifski,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
-Imports: 
+Imports:
     dplyr,
     tibble,
-    shiny, 
-    shinyWidgets, 
+    shiny,
+    shinyWidgets,
     formatR,
     dlookr,
     ggpubr,
@@ -36,7 +39,6 @@ Imports:
     survminer,
     survival,
     labelled,
-    here,
     gganimate,
     magick,
     tidyr,

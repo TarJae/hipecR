@@ -16,7 +16,7 @@ A named numeric vector with NA counts per column.
 Counts NA values across columns.
 }
 \examples{
-\dontrun{
+\donttest{
 if(interactive()){
  tar_count_na(mtcars)
  }

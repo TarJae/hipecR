@@ -22,7 +22,7 @@ This function returns the first `nh` = n head and last `nt` = n tail rows of a d
 Row numbers from the original data are preserved as row names in the result.
 }
 \examples{
-\dontrun{
+\donttest{
 if(interactive()){
  # Generate example data
  df <- data.frame(A = 1:10, B = 11:20)

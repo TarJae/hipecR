@@ -1,4 +1,4 @@
-#' Imputates outliers and shows 4 different method plots
+﻿#' Imputates outliers and shows 4 different method plots
 #'
 #' @param df data frame or tibble where the numeric variable lives
 #' @param variable Numeric variable column in the data frame
@@ -9,8 +9,10 @@
 #' @importFrom ggpubr ggarrange
 #' @importFrom dlookr imputate_outlier
 #' @examples
-#' \dontrun{
-#' tar_impute_outlier(mtcars, mpg)
+#' \donttest{
+#' if (interactive()) {
+#'   tar_impute_outlier(mtcars, mpg)
+#' }
 #' }
 
 tar_impute_outlier <- function(df, variable) {
@@ -23,3 +25,6 @@ tar_impute_outlier <- function(df, variable) {
   ggpubr::ggarrange(img1, img2, img3, img4, ncol = 2, nrow = 2)
 
 }
+
+
+

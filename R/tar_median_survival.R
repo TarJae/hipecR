@@ -1,23 +1,24 @@
-#' Plot Survival Curves and Save with Median Annotations
+﻿#' Plot Survival Curves and Save with Median Annotations
 #'
-#' This function fits a survival model, plots the survival curves, annotates median survival times, and saves the plot to a specified output directory.
+#' This function fits a survival model, plots the survival curves, and
+#' annotates median survival times. The plot can optionally be saved to file.
 #'
 #' @param df A data frame containing the survival data.
 #' @param var A variable used for grouping the survival curves.
 #' @param time_col A string specifying the name of the column representing time.
 #' @param status_col A string specifying the name of the column representing status.
+#' @param output_file Optional output path for saving the plot. If `NULL`
+#'   (default), the function does not write a file.
 #'
-#' @return The function prints the survival plot and saves it to the output directory.
+#' @return A `ggsurvplot` object (invisibly). Optionally writes a PNG file.
 #' @export
 #' @importFrom survival Surv
 #' @importFrom survminer ggsurvplot surv_fit
 #' @importFrom ggplot2 annotate scale_x_continuous ggsave theme_bw element_text
 #' @importFrom dplyr tibble
 #' @importFrom labelled get_variable_labels
-#' @importFrom here here
-#'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Example dataset
 #' df_survival <- structure(
 #'   list(
@@ -44,10 +45,16 @@
 #'   class = c("tbl_df", "tbl", "data.frame")
 #' )
 #'
-#' tar_median_survival(df = df_survival, var = sex, time_col = "time", status_col = "status")
+#' tar_median_survival(
+#'   df = df_survival,
+#'   var = sex,
+#'   time_col = "time",
+#'   status_col = "status",
+#'   output_file = file.path(tempdir(), "survival_sex.png")
+#' )
 #' }
 
-tar_median_survival <- function(df, var, time_col = "time", status_col = "status") {
+tar_median_survival <- function(df, var, time_col = "time", status_col = "status", output_file = NULL) {
   # Convert the variable to a string
   var <- as.character(substitute(var))
 
@@ -111,16 +118,20 @@ tar_median_survival <- function(df, var, time_col = "time", status_col = "status
   # Print the plot
   print(plot)
 
-  # Ensure the output directory exists
-  output_dir <- here::here("output")
-  if (!dir.exists(output_dir)) {
-    dir.create(output_dir, recursive = TRUE)
+  if (!is.null(output_file)) {
+    if (!is.character(output_file) || length(output_file) != 1 || is.na(output_file) || nchar(output_file) == 0) {
+      stop("output_file must be NULL or a non-empty character string.")
+    }
+    output_dir <- dirname(output_file)
+    if (!dir.exists(output_dir)) {
+      dir.create(output_dir, recursive = TRUE)
+    }
+    ggplot2::ggsave(output_file, plot$plot, width = 10, height = 7, units = "in", dpi = 300, bg = "white")
+    message("Plot saved to: ", output_file)
   }
-
-  # Save the plot
-  output_file <- here::here(output_dir, paste0("survival_", var, ".png"))
-  ggsave(output_file, plot$plot, width = 10, height = 7, units = "in", dpi = 300, bg = "white")
-
-  message("Plot saved to: ", output_file)
+  invisible(plot)
 }
+
+
+
 

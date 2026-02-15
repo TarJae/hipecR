@@ -16,7 +16,7 @@ A one-row data frame with standard column types.
 Coerce raw input into a one-row data frame with registry fields.
 }
 \examples{
-\dontrun{
+\donttest{
 if(interactive()){
  #EXAMPLE1
  }

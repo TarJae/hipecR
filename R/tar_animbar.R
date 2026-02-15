@@ -1,4 +1,4 @@
-#' Create Animated Bar Chart
+﻿#' Create Animated Bar Chart
 #'
 #' This function generates an animated bar chart with customizable colors and orientation.
 #' The resulting GIF can be saved to a specified filename.
@@ -12,7 +12,7 @@
 #' @param total An integer indicating the maximum value for the bar chart scale (default: 100).
 #' @param fps Frames per second for the animation (default: 24).
 #' @param base_duration Base duration (seconds) for a full-scale animation (default: 15).
-#' @param output_dir Output directory for the GIF (default: current working directory).
+#' @param output_dir Output directory for the GIF (default: temporary directory).
 #' @param overwrite Logical; overwrite an existing GIF (default: FALSE).
 #' @param ask Logical; if TRUE, prompt when file exists (default: interactive()).
 #'
@@ -20,16 +20,18 @@
 #' @description This function creates an animated bar chart with customizable colors and orientation. The resulting GIF can be saved to a specified filename.
 #'
 #' @examples
-#' \dontrun{
-#' tar_animbar(x = 10, filename = "a3", color1 = "gold", color2 = "purple3",
-#'             horizontal = TRUE, total = 10, fps = 5, base_duration = 1,
-#'             output_dir = tempdir(), overwrite = TRUE, ask = FALSE)
-#' tar_animbar(x = 5, filename = "a4", color1 = "steelblue", color2 = "purple3",
-#'             horizontal = FALSE, total = 10, fps = 5, base_duration = 1,
-#'             output_dir = tempdir(), overwrite = TRUE, ask = FALSE)
-#' tar_animbar(x = 3, filename = "rapido_LRR", horizontal = FALSE, total = 10,
-#'             fps = 5, base_duration = 1, output_dir = tempdir(),
-#'             overwrite = TRUE, ask = FALSE)
+#' \donttest{
+#' if (interactive() && requireNamespace("gifski", quietly = TRUE)) {
+#'   tar_animbar(x = 10, filename = "a3", color1 = "gold", color2 = "purple3",
+#'               horizontal = TRUE, total = 10, fps = 5, base_duration = 1,
+#'               output_dir = tempdir(), overwrite = TRUE, ask = FALSE)
+#'   tar_animbar(x = 5, filename = "a4", color1 = "steelblue", color2 = "purple3",
+#'               horizontal = FALSE, total = 10, fps = 5, base_duration = 1,
+#'               output_dir = tempdir(), overwrite = TRUE, ask = FALSE)
+#'   tar_animbar(x = 3, filename = "rapido_LRR", horizontal = FALSE, total = 10,
+#'               fps = 5, base_duration = 1, output_dir = tempdir(),
+#'               overwrite = TRUE, ask = FALSE)
+#' }
 #' }
 #'
 #' @importFrom ggplot2 ggplot aes geom_col scale_fill_manual theme_void theme labs element_text position_fill geom_text coord_flip
@@ -49,7 +51,7 @@ tar_animbar <- function(x,
                         total = 100,
                         fps = 24,
                         base_duration = 15,
-                        output_dir = ".",
+                        output_dir = tempdir(),
                         overwrite = FALSE,
                         ask = interactive()) {
   if (!is.numeric(x) || length(x) != 1) {
@@ -169,3 +171,6 @@ tar_animbar <- function(x,
 
   invisible(gif_path)
 }
+
+
+

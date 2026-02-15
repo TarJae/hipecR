@@ -20,7 +20,7 @@ Creates a shinydashboard box equivalent with shiny
 Builds a wellPanel containing follow-up inputs for the given month.
 }
 \examples{
-\dontrun{
+\donttest{
 if(interactive()){
  #EXAMPLE1
  }

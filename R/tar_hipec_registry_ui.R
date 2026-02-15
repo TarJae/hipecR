@@ -1,4 +1,4 @@
-
+﻿
 #' @title tar_WellPanel
 #' @description Creates a shinydashboard box equivalent with shiny
 #' @param n integer the gives the number of months in follow-up
@@ -6,7 +6,7 @@
 #' (without ShinyDashboard)
 #' @details Builds a wellPanel containing follow-up inputs for the given month.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' if(interactive()){
 #'  #EXAMPLE1
 #'  }
@@ -40,7 +40,7 @@ tar_WellPanel <- function(n) {
 #' @return A date input in dd-MM-yyyy format.
 #' @details Wraps shinyWidgets::airDatepickerInput with fixed defaults.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' if(interactive()){
 #'  #EXAMPLE1
 #'  }
@@ -67,3 +67,6 @@ tar_dateInput <-  function(inputId, label) {
     width = "150px"
   )
 }
+
+
+

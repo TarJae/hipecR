@@ -1,4 +1,4 @@
-#' Display both the head and tail of a dataframe or tibble
+﻿#' Display both the head and tail of a dataframe or tibble
 #'
 #' This function returns the first `nh` = n head and last `nt` = n tail rows of a dataframe or tibble.
 #' Row numbers from the original data are preserved as row names in the result.
@@ -11,7 +11,7 @@
 #' The row numbers from the original data are used as row names in the result.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' if(interactive()){
 #'  # Generate example data
 #'  df <- data.frame(A = 1:10, B = 11:20)
@@ -57,4 +57,7 @@ tar_head_tail <- function(data, nh = 5, nt = 5) {
 
   return(head_tail)
 }
+
+
+
 

@@ -13,7 +13,7 @@ A character vector with the reformatted one-line code.
 Creates a one-liner from a multiline code example in the clipboard.
 }
 \examples{
-\dontrun{
+\donttest{
 if (interactive()) {
   # Your multiline string
   # copy this code
@@ -25,10 +25,9 @@ if (interactive()) {
     step = 1,
     value = 0
   )
+  # then apply
+  tar_oneline()
 }
-
-# then apply
-tar_oneline()
 }
 }
 \seealso{

@@ -10,20 +10,17 @@ tar_install(x)
 \item{x}{The name of the package you want to install.}
 }
 \value{
-Installs a package.
+A character string with the corresponding `install.packages()` command.
 }
 \description{
-Function to facilitate the use of
-install.packages("dplyr") as tar_install(dplyr).
+Helper that returns an `install.packages()` command for a package name.
 }
 \details{
 This function uses non-standard evaluation to allow you to specify
 the package name unquoted.
 }
 \examples{
-\dontrun{
-if (interactive()) {
-  tar_install(dplyr)
-}
+\donttest{
+tar_install(dplyr)
 }
 }

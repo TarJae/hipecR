@@ -1,9 +1,9 @@
-#' @title NA counter
+﻿#' @title NA counter
 #' @description Counts NA values across columns.
 #' @param df A data frame or tibble.
 #' @return A named numeric vector with NA counts per column.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' if(interactive()){
 #'  tar_count_na(mtcars)
 #'  }
@@ -17,4 +17,7 @@ tar_count_na <- function(df){
   }
   vapply(df, function(x) sum(is.na(x)), FUN.VALUE = numeric(1))
 }
+
+
+
 

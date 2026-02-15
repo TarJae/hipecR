@@ -4,7 +4,13 @@
 \alias{tar_median_survival}
 \title{Plot Survival Curves and Save with Median Annotations}
 \usage{
-tar_median_survival(df, var, time_col = "time", status_col = "status")
+tar_median_survival(
+  df,
+  var,
+  time_col = "time",
+  status_col = "status",
+  output_file = NULL
+)
 }
 \arguments{
 \item{df}{A data frame containing the survival data.}
@@ -14,15 +20,19 @@ tar_median_survival(df, var, time_col = "time", status_col = "status")
 \item{time_col}{A string specifying the name of the column representing time.}
 
 \item{status_col}{A string specifying the name of the column representing status.}
+
+\item{output_file}{Optional output path for saving the plot. If `NULL`
+(default), the function does not write a file.}
 }
 \value{
-The function prints the survival plot and saves it to the output directory.
+A `ggsurvplot` object (invisibly). Optionally writes a PNG file.
 }
 \description{
-This function fits a survival model, plots the survival curves, annotates median survival times, and saves the plot to a specified output directory.
+This function fits a survival model, plots the survival curves, and
+annotates median survival times. The plot can optionally be saved to file.
 }
 \examples{
-\dontrun{
+\donttest{
 # Example dataset
 df_survival <- structure(
   list(
@@ -49,6 +59,12 @@ df_survival <- structure(
   class = c("tbl_df", "tbl", "data.frame")
 )
 
-tar_median_survival(df = df_survival, var = sex, time_col = "time", status_col = "status")
+tar_median_survival(
+  df = df_survival,
+  var = sex,
+  time_col = "time",
+  status_col = "status",
+  output_file = file.path(tempdir(), "survival_sex.png")
+)
 }
 }

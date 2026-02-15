@@ -1,9 +1,9 @@
-#' @title tar_oneline
+﻿#' @title tar_oneline
 #' @description Creates a one-liner from a multiline code example in the clipboard.
 
 #' @return A character vector with the reformatted one-line code.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' if (interactive()) {
 #'   # Your multiline string
 #'   # copy this code
@@ -15,10 +15,9 @@
 #'     step = 1,
 #'     value = 0
 #'   )
+#'   # then apply
+#'   tar_oneline()
 #' }
-#'
-#' # then apply
-#' tar_oneline()
 #' }
 #' @seealso
 #'  \code{\link[formatR]{tidy_source}}
@@ -37,3 +36,6 @@ tar_oneline <- function() {
   out <- formatR::tidy_source(text = my_code, width.cutoff = Inf)
   out$text.tidy
 }
+
+
+

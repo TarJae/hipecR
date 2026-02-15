@@ -16,7 +16,7 @@ Invisible NULL.
 Delete a record from `responses` by id.
 }
 \examples{
-\dontrun{
+\donttest{
 if(interactive()){
  #EXAMPLE1
  }

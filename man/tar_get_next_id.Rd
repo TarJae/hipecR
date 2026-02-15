@@ -13,7 +13,7 @@ Integer ID.
 Get the next numeric ID based on the `responses` data frame.
 }
 \examples{
-\dontrun{
+\donttest{
 if(interactive()){
  #EXAMPLE1
  }

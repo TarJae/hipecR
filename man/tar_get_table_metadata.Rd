@@ -21,7 +21,7 @@ Create a named vector of fields and labels for the registry.
 Expects `variable` and `label` to be the same length.
 }
 \examples{
-\dontrun{
+\donttest{
 if(interactive()){
  #EXAMPLE1
  }

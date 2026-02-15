@@ -16,7 +16,7 @@ Invisible NULL.
 Update an existing record in `responses` by row name.
 }
 \examples{
-\dontrun{
+\donttest{
 if(interactive()){
  #EXAMPLE1
  }

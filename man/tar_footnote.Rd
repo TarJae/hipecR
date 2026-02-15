@@ -9,7 +9,7 @@ tar_footnote(
   style,
   string,
   filename = NULL,
-  output_dir = ".",
+  output_dir = tempdir(),
   overwrite = FALSE,
   ask = interactive()
 )
@@ -24,7 +24,7 @@ tar_footnote(
 \item{filename}{Optional output filename (without extension). Defaults to the
 variable name of `graph` if possible.}
 
-\item{output_dir}{Output directory (default: current working directory).}
+\item{output_dir}{Output directory (default: temporary directory).}
 
 \item{overwrite}{Logical; overwrite an existing PNG (default: FALSE).}
 
@@ -39,11 +39,9 @@ and saves the graph along with the footnote as a PNG file. The PNG file is named
 graph object name.
 }
 \examples{
-\dontrun{
-library(htmltools)
-library(webshot2)
-
-graph <- grViz("
+\donttest{
+if (interactive() && requireNamespace("DiagrammeR", quietly = TRUE)) {
+graph <- DiagrammeR::grViz("
 digraph {
 graph [layout = dot]
 node [shape = box]
@@ -66,5 +64,6 @@ string <- paste(
 )
 
 tar_footnote(graph, style, string)
+}
 }
 }

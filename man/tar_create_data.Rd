@@ -16,7 +16,7 @@ Invisible NULL.
 Add a new record to the in-memory `responses` data frame.
 }
 \examples{
-\dontrun{
+\donttest{
 if(interactive()){
  #EXAMPLE1
  }

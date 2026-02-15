@@ -13,7 +13,7 @@ A one-row data frame with default values.
 Return an empty default registry record.
 }
 \examples{
-\dontrun{
+\donttest{
 if(interactive()){
  #EXAMPLE1
  }

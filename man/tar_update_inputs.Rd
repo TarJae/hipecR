@@ -18,7 +18,7 @@ Invisible NULL.
 Push a registry record into Shiny input controls.
 }
 \examples{
-\dontrun{
+\donttest{
 if(interactive()){
  #EXAMPLE1
  }

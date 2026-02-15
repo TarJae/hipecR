@@ -13,7 +13,7 @@ A data frame or NULL if not available.
 Return the in-memory `responses` data frame, if present.
 }
 \examples{
-\dontrun{
+\donttest{
 if(interactive()){
  #EXAMPLE1
  }
