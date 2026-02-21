@@ -2,6 +2,7 @@
 
 * BREAKING: Refactored all functions.
 * Improved overall code quality.
+* CRAN release 2.0.0 (submission SHA: `b8724f9`).
 
 # hipecR 0.1.0
 

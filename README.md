@@ -1,4 +1,3 @@
-
 ![hipecR_hex](www/hipecR_gray.png)
 
 # hipecR
@@ -12,7 +11,13 @@ The goal of hipecR is to offer a collection of useful functions for analyzing pa
 
 ## Installation
 
-You can install the development version of hipecR like so:
+Install the CRAN release:
+
+``` r
+install.packages("hipecR")
+```
+
+Or install the development version from GitHub:
 
 ``` r
 library(devtools) # Make sure that the devtools library is loaded
