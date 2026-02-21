@@ -1,5 +1,5 @@
 
-![hipecR_hex](www/hipecR_gray.png)
+![](man/figures/hipecR_gray.png)
 
 # hipecR
 
@@ -7,6 +7,10 @@
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![CRAN status](https://www.r-pkg.org/badges/version/hipecR)](https://CRAN.R-project.org/package=hipecR)
 <!-- badges: end -->
+
+hipecR acknowledges the Austrian Society for Oncological Surgery (ACO-ASSO): <https://www.aco-asso.at/>.
+
+[![ACO-ASSO](man/figures/logoacoasso.png)](https://www.aco-asso.at/)
 
 The goal of hipecR is to offer a collection of useful functions for analyzing patient data, including some essential functions for calculating the Peritoneal Surface Area (PSA) individually for each patient. After determining the global PSA, we can assess the quantitative PSA before and after cytoreduction (surgery). The underlying idea is to provide a reproducible and comparable definition of the resected PSA across different institutions. The next step involves calculating the dosage of chemotherapy during Hyperthermic Intraperitoneal Chemotherapy (HIPEC), adapted to the remaining PSA.
 
@@ -154,5 +158,9 @@ tar_oneline()
 - `tar_print`: set tibble print min.
 ```r
 tar_print(100)
+```
+- `tar_wsl_pfad`: convert a Windows path to a WSL path.
+```r
+tar_wsl_pfad("C:/Users/tarka/project", copy_to_clipboard = FALSE)
 ```
 

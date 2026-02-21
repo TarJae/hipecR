@@ -15,12 +15,13 @@ Description: Provides helper functions for analysing patient data in
     Body surface area calculations are based on Du Bois and Du Bois
     (1916) <doi:10.1001/archinte.1916.00080130010002>.
 License: MIT + file LICENSE
-URL: https://github.com/TarJae/hipecR
+URL: https://github.com/TarJae/hipecR, https://tarjae.github.io/hipecR/
 BugReports: https://github.com/TarJae/hipecR/issues
 Encoding: UTF-8
 RoxygenNote: 7.3.3
 Depends: R (>= 4.1.0)
 Suggests:
+    clipr,
     DiagrammeR,
     gifski,
     testthat (>= 3.0.0)
