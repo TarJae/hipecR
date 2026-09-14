@@ -1,3 +1,8 @@
+# hipecR (development version)
+
+* `tar_bmi()`, `tar_bsa()`, and `tar_psa()` now handle missing, non-finite,
+  and physically invalid values element-wise by returning `NA`.
+
 # hipecR 2.0.0
 
 * BREAKING: Refactored all functions.

@@ -7,12 +7,13 @@
 tar_bsa(height, weight)
 }
 \arguments{
-\item{height}{A numeric value in cm}
+\item{height}{A numeric vector in cm}
 
-\item{weight}{A numeric value in kg}
+\item{weight}{A numeric vector in kg}
 }
 \value{
-A numeric value in m^2
+A numeric vector in m^2. Missing, non-finite, or non-positive
+  values produce NA at the corresponding position.
 }
 \description{
 This function calculates the body surface area with the
@@ -21,5 +22,6 @@ area if height and body mass are known. Arch Intern Med 1916;17:863-71.
 }
 \examples{
 tar_bsa(height = 180, weight = 80) # ~1.996421 m^2
+tar_bsa(height = c(180, NA), weight = c(80, 75))
 
 }

@@ -12,8 +12,9 @@ tar_bmi(weight, height)
 \item{height}{Numeric, cm}
 }
 \value{
-A numeric vector containing the body mass index. If weight or
-  height is missing, the corresponding result is NA.
+A numeric vector containing the body mass index. Missing,
+  non-finite, or physically invalid values produce NA at the corresponding
+  position.
 }
 \description{
 Calculating BMI (kg/m^2)

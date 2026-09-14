@@ -7,12 +7,14 @@
 tar_psa(height, weight)
 }
 \arguments{
-\item{height}{A numeric value representing the height in cm.}
+\item{height}{A numeric vector representing height in cm.}
 
-\item{weight}{A numeric value representing the weight in kg.}
+\item{weight}{A numeric vector representing weight in kg.}
 }
 \value{
-A numeric value representing 1% of the peritoneal surface area in cm^2.
+A numeric vector representing 1% of the peritoneal surface area in
+  cm^2. Missing, non-finite, or non-positive values produce NA at the
+  corresponding position.
 }
 \description{
 This function calculates 1% of the peritoneal surface area in cm^2 based on
@@ -20,4 +22,5 @@ the given height and weight. It's used as a factor for further calculations.
 }
 \examples{
 tar_psa(180, 80) # Expected output: 199.6421 cm^2
+tar_psa(height = c(180, NA), weight = c(80, 75))
 }
