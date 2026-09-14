@@ -2,6 +2,7 @@
 ^renv\.lock$
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^\.github$
 ^LICENSE\.md$
 ^hipecR\.Rcheck$
 ^hipecR.*\.tar\.gz$

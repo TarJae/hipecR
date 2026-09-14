@@ -12,11 +12,13 @@ tar_bmi(weight, height)
 \item{height}{Numeric, cm}
 }
 \value{
-body mass index BMI
+A numeric vector containing the body mass index. If weight or
+  height is missing, the corresponding result is NA.
 }
 \description{
 Calculating BMI (kg/m^2)
 }
 \examples{
 tar_bmi(weight = 100, height = 190)
+tar_bmi(weight = c(80, NA), height = c(180, 175))
 }
