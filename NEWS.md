@@ -1,5 +1,9 @@
 # hipecR (development version)
 
+* Breaking change: `tar_dgav_lookup()` now uses `internalno` instead of `azl`,
+  requires the additional registry-assigned `uid` column, supports explicit
+  `from` and `to` arguments, and reports invalid or unmatched keys more
+  precisely.
 * `tar_bmi()`, `tar_bsa()`, and `tar_psa()` now handle missing, non-finite,
   and physically invalid values element-wise by returning `NA`.
 

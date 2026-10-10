@@ -34,7 +34,6 @@ Imports:
     formatR,
     dlookr,
     ggpubr,
-    stringr,
     ggplot2,
     forcats,
     survminer,

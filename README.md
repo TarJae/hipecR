@@ -69,11 +69,16 @@ tar_count_na(mtcars)
 ```r
 tar_head_tail(mtcars, nh = 3, nt = 2)
 ```
-- `tar_dgav_lookup`: lookup by name or ID.
+- `tar_dgav_lookup`: translate between names, user-supplied internal numbers, and registry UIDs. The lookup table must be supplied by the user and must not be committed to a public repository.
 ```r
-df <- data.frame(Name = c("Hans", "Maria"), azl = c("100", "101"))
-tar_dgav_lookup(df, "Hans")
-tar_dgav_lookup(df, 101)
+lookup <- data.frame(
+  Name = c("Testperson Alpha", "Testperson Beta"),
+  internalno = c("0012345678", "0098765432"),
+  uid = c(4101, 4102)
+)
+tar_dgav_lookup(lookup, "Alpha")
+tar_dgav_lookup(lookup, 4102)
+tar_dgav_lookup(lookup, "Testperson Beta", to = "uid")
 ```
 - `tar_yes_no`: map "yes"/"no" to 1/0.
 ```r

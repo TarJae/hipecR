@@ -6,7 +6,11 @@ cran-email-template.txt
 .Rdata
 .httr-oauth
 .DS_Store
-hipecR.Rcheck/
+*.Rcheck/
 hipecR*.tar.gz
 hipecR*.tgz
 docs
+session-notes/
+AGENTS.md
+CRAN-SUBMISSION
+my_animated_bar.gif

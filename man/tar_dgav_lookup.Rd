@@ -2,38 +2,92 @@
 % Please edit documentation in R/tar_dgav_lookup.R
 \name{tar_dgav_lookup}
 \alias{tar_dgav_lookup}
-\title{Look-up function for DGAV registry IDs/names}
+\title{Look up DGAV registry IDs and names}
 \usage{
-tar_dgav_lookup(df, mykeyvalues)
+tar_dgav_lookup(
+  df,
+  mykeyvalues,
+  from = c("auto", "Name", "internalno", "uid"),
+  to = c("auto", "Name", "internalno", "uid")
+)
 }
 \arguments{
-\item{df}{data frame with Name and azl number}
+\item{df}{A data frame or tibble containing columns named exactly `Name`,
+`internalno`, and `uid`. Additional columns are ignored. `Name` and
+`internalno` are returned as character values; `uid` is returned as
+numeric.}
 
-\item{mykeyvalues}{is a vector containing the key values to be looked up in the data frame.
-These key values can be either numeric or character strings. The function processes each key
-value individually to determine if it matches entries in the specified columns of the data frame}
+\item{mykeyvalues}{An atomic numeric, character, or factor vector of lookup
+keys. A list is also accepted when every element is an atomic vector of
+length one and all elements are consistently numeric or text. Missing and
+empty keys are not allowed. A zero-length vector returns a zero-length
+result of the target type.}
+
+\item{from}{Column in which to search: `"auto"`, `"Name"`, `"internalno"`,
+or `"uid"`. With `"auto"`, the search order depends on the key type as
+described in Details.}
+
+\item{to}{Column to return: `"auto"`, `"Name"`, `"internalno"`, or `"uid"`.
+With `"auto"`, an ID lookup returns `Name`, while a name lookup returns
+`internalno`.}
 }
 \value{
-a key or value, depending on what is wanted
+An unnamed vector containing values from the selected target column.
+  Results follow key order and, within each key, table row order. The result
+  is character for `Name` and `internalno`, numeric for `uid`, and can be
+  longer than `mykeyvalues` when a key has multiple matches.
 }
 \description{
-This function takes a data frame `df` and a vector of
-key values `mykeyvalues`. It returns an unnamed vector of corresponding
-results by performing lookups in the data frame.
+Translate between a person's name, the user-supplied `internalno`, and the
+automatically assigned `uid` in a DGAV registry lookup table. The package
+does not include such a table. Users must supply their own data frame, for
+example by reading a CSV file and joining it to registry data. Because the
+table contains personal data, it must not be included in a package or a
+public repository.
+}
+\details{
+Automatic lookup follows this table separately for each key:
+
+\tabular{lll}{
+Key type \tab Search order with `from = "auto"` \tab `to = "auto"` \cr
+Numeric \tab `uid`, then `internalno` \tab `Name` \cr
+Text \tab `internalno`, then `Name` \tab `Name` or `internalno` \cr
+}
+
+ID matching is exact. Numeric keys used for `internalno` are converted to
+non-scientific text. Both keys and table values are stripped of leading and
+trailing whitespace, but leading zeroes are otherwise preserved. Read
+`internalno` as character data (for example, with `readr` column types or
+`colClasses = "character"`) so that leading zeroes are not lost. For `uid`,
+digit-only text and text-valued table columns are compared numerically.
+
+Name matching is a case-insensitive literal substring search, not a regular
+expression. Read files with the correct encoding, such as UTF-8 or Latin-1,
+so that names containing umlauts are represented consistently.
+
+Multiple matches are all returned in table row order; results for multiple
+keys follow key order and can therefore be longer than `mykeyvalues`. If any
+keys have no match, the function stops and reports all of them. R coerces
+mixed atomic vectors such as `c(123, "Name")` to character before the
+function is called; such values consequently follow the text lookup rules.
+A list can preserve mixed types and is rejected when its element types are
+inconsistent.
 }
 \examples{
-# Example data
-df <- data.frame(
-  Name = c("Hans", "Maria", "Franz HUBER"),
-  azl = c("1006341612", "1040405318", "1060707219"),
-  stringsAsFactors = FALSE
+lookup <- data.frame(
+  Name = c("Testperson Alpha", "Testperson Beta", "Example Person"),
+  internalno = c("0012345678", "1234567890", "0099001122"),
+  uid = c(4101, 4102, 4103)
 )
 
-tar_dgav_lookup(df, "HUBER")       # Should return "1060707219"
-tar_dgav_lookup(df, "huber")       # Should also return "1060707219"
-tar_dgav_lookup(df, "Franz")       # Should return "1060707219"
-tar_dgav_lookup(df, 1006341612)  # Should return "Hans"
-tar_dgav_lookup(df, c(1006341612, 1040405318)) # Should return "Hans"  "Maria"
-
-# Function to handle inputs for data frame
+tar_dgav_lookup(lookup, 4101)
+tar_dgav_lookup(lookup, "0012345678")
+tar_dgav_lookup(lookup, "alpha")
+tar_dgav_lookup(lookup, "Beta", to = "uid")
+tar_dgav_lookup(lookup, c(4101, 4103))
+tar_dgav_lookup(lookup, 1234567890, from = "internalno")
+tryCatch(
+  tar_dgav_lookup(lookup, "Missing Person"),
+  error = function(error) conditionMessage(error)
+)
 }
