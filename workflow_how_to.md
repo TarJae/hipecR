@@ -43,3 +43,41 @@ use_testthat()
 amitFuncs::pleaseForTheLoveOfGodLetMeBuild()
 usethis::use_dev_version()
 use_vignette()
+
+---
+
+#### RELEASE + WEBSITE WORKFLOW (main vs gh-pages)
+
+1) **Code changes always on `main`**
+- Add function in `R/`
+- Add roxygen docs
+- Run:
+  - `devtools::document()`
+  - `devtools::test()`
+  - `devtools::check()`
+- Commit + push to `main`
+
+2) **pkgdown website content**
+- Build locally: `pkgdown::build_site()` (creates/updates `docs/`)
+- Keep package source on `main`
+- Publish static site on `gh-pages` (branch root content = website files)
+
+3) **Safe deploy from `docs/` to `gh-pages` (Windows)**
+- In repo root:
+  - `git worktree add ..\\_gh-pages gh-pages`
+  - `robocopy docs ..\\_gh-pages /MIR /XD .git /XF .git`
+  - `cd ..\\_gh-pages`
+  - `git add -A`
+  - `git commit -m "Deploy pkgdown site"`
+  - `git push origin gh-pages`
+
+4) **Important notes**
+- Do **not** use `/MIR` without excluding `.git` file in worktree, otherwise the worktree breaks.
+- `main` = package source code, tests, docs source.
+- `gh-pages` = generated static website only.
+
+5) **Install behavior**
+- CRAN install: `install.packages("hipecR")` (not `"hipec"`).
+- New functions are available from CRAN only after a new CRAN release.
+- Until then, install dev version from GitHub:
+  - `remotes::install_github("TarJae/hipecR")`
